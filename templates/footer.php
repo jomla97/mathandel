@@ -22,6 +22,7 @@
 					<td>Tel: 420 - 00 13 37</td>
 				</tr>
 			</table>
+			<p>Copyright 2015 Mathandel1337 AB</p>
 		</footer>
 	</body>
 </html>
