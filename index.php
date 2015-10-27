@@ -1,6 +1,7 @@
 <?php
 
   require "includes/model.php";
+  require "templates/header.php";
 
   $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_URL);
   $logout = filter_input(INPUT_GET, 'logout' , FILTER_SANITIZE_URL);
@@ -42,5 +43,7 @@
   else{
     
   }
+
+  require "templates/footer.php";
 
 ?>
