@@ -41,7 +41,7 @@
   }
 
   else{
-    
+    require "templates/startpage.php";
   }
 
   require "templates/footer.php";

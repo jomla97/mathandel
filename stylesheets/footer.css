@@ -1,0 +1,43 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: WalkwayBold;
+}
+
+a{
+	text-decoration: none;
+}
+
+/*Walkway Semi-Bold*/
+@font-face {
+    font-family: 'WalkwaySemiBold';
+    src: url('fonts/WalkwaySemiBold.eot');
+    src: url('fonts/WalkwaySemiBold.eot') format('embedded-opentype'),
+         url('fonts/WalkwaySemiBold.woff2') format('woff2'),
+         url('fonts/WalkwaySemiBold.woff') format('woff'),
+         url('fonts/WalkwaySemiBold.ttf') format('truetype'),
+         url('fonts/WalkwaySemiBold.svg#WalkwaySemiBold') format('svg');
+}
+
+/*Walkway Bold*/
+@font-face {
+    font-family: 'WalkwayBold';
+    src: url('fonts/WalkwayBold.eot');
+    src: url('fonts/WalkwayBold.eot') format('embedded-opentype'),
+         url('fonts/WalkwayBold.woff2') format('woff2'),
+         url('fonts/WalkwayBold.woff') format('woff'),
+         url('fonts/WalkwayBold.ttf') format('truetype'),
+         url('fonts/WalkwayBold.svg#WalkwayBold') format('svg');
+}
+
+footer{
+    background-color: #2d2d2d;
+    color: white;
+    padding: 100px;
+}
+footer td{
+    padding: 0 50px;
+}
+footer table{
+    margin: 0 auto;
+}
