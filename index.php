@@ -53,10 +53,10 @@
   			$result = register($_POST['username'], $_POST['password'], $_POST['email'], $_POST['surname'], $_POST['lastname'], $_POST['street'], $_POST['ort'], $_POST['postalcode']);
   			
   			if($result == 1){
-  				$registration_error = "The username '" . $_POST['username'] . "' is taken. Try another one.";
+  				$registration_error = "Användarnamnet '" . $_POST['username'] . "' är tagen. Försök med en annan.";
   			}
   			else if($result == 2){
-  				$registration_error = "The email '" . $_POST['email'] . "' is taken. Try another one.";
+  				$registration_error = "Email-adressen '" . $_POST['email'] . "' är tagen. Försök med en annan.";
   			}
   			else if($result == 3){
   				header("location:index.php");
@@ -66,8 +66,40 @@
   	}
   }
 
-  else if($page == "account"){
-  	require "templates/account-page.php";
+  else if($page == "account" && logged_in()){
+  	if(isset($_GET['action']) && $_GET['action'] == "edit_profile"){
+  		if(isset($_POST['email']) && isset($_POST['surname']) && isset($_POST['lastname']) && isset($_POST['street']) && isset($_POST['ort']) && isset($_POST['postalcode']) && isset($_POST['password'])){
+  			$result = edit_profile($_POST['email'], $_POST['surname'], $_POST['lastname'], $_POST['street'], $_POST['ort'], $_POST['postalcode'], $_POST['password']);
+
+  			if($result == 1){
+  				$edit_profile_error = "Email-adressen '" . $_POST['email'] . "' är tagen. Försök med en annan.";
+  			}
+  			else if($result == 2){
+  				header("location:index.php?page=account");
+  			}
+  			else if($result == 3){
+  				$edit_profile_error = "Lösenordet du skrev in som ditt 'nuvarande' är fel. Försök igen.";
+  			}
+  		}
+  		require "templates/edit_profile.php";
+  	}
+  	else if(isset($_GET['action']) && $_GET['action'] == "change_password"){
+  		if(isset($_POST['new_password'])){
+
+  			$result = change_password($_SESSION['username'], $_POST['new_password'], $_POST['current_password']);
+
+  			if($result == 1){
+  				$change_password_error = "Lösenordet du skrev in som ditt 'nuvarande' är fel. Försök igen.";
+  			}
+  			else if($result == 2){
+  				header("location:index.php?page=account");
+  			}
+  		}
+  		require "templates/change-password.php";
+  	}
+  	else{
+  		require "templates/account-page.php";
+  	}
   }
 
   else if($page == 'admin'){

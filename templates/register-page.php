@@ -22,8 +22,8 @@
 				<input class="text-input" type="text" name="street" placeholder="Gatuadress.." required>
 				<input class="text-input" type="text" name="ort" placeholder="Ort.." required>
 				<input class="text-input" type="text" name="postalcode" placeholder="Postkod.." required>
-				<input class="text-input" type="text" name="username" placeholder="Username.." required>
-				<input class="text-input" type="password" name="password" placeholder="Password.." required>
+				<input class="text-input" type="text" name="username" placeholder="Användarnamn.." required>
+				<input class="text-input" type="password" name="password" placeholder="Lösenord.." required>
 				<input class="register" type="submit" value="Registrera">
 			</form>
 		</main>

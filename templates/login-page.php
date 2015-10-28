@@ -16,8 +16,8 @@
 						';
 					}
 				?>
-				<input class="text-input" type="text" name="username" placeholder="Username.." required>
-				<input class="text-input" type="password" name="password" placeholder="Password.." required>
+				<input class="text-input" type="text" name="username" placeholder="Användarnamn.." required>
+				<input class="text-input" type="password" name="password" placeholder="Lösenord.." required>
 				<input class="login" type="submit" value="Logga in">
 			</form>
 		</main>

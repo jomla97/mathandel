@@ -81,6 +81,60 @@
 		}
 	}
 
+	function edit_profile($email, $surname, $lastname, $street, $ort, $postalcode, $password_from_form){
+		$pdo = pdo();
+
+		$username = $_SESSION['username'];
+		$password = $_SESSION['password'];
+
+		if($password_from_form == $password){
+			$statement = $pdo->prepare("SELECT * FROM users WHERE email LIKE '$email' AND username NOT LIKE '$username'");
+			$statement->execute();
+			$rowcount = $statement->rowCount();
+
+			if($rowcount < 1){
+				//update account details
+				$statement = $pdo->prepare("UPDATE users SET email='$email', surname='$surname', lastname='$lastname', street='$street', ort='$ort', postalcode='$postalcode' WHERE username LIKE '$username' AND password LIKE '$password'");
+				if($statement->execute()){
+					mail($email, "Bekräftelse email - Mathandel", "Tack for att du registrerat ett konto hos oss, " . $surname . ".");
+					return 2;
+				}
+				else{
+					echo '<h1>Det verkar som att någonting gick väldigt fel. Skicka detta error-meddelande till en admin så kommer vi ta en titt på det.</h1><br>';
+					print_r($statement->errorInfo());
+				}
+			}
+			else{
+				//email is taken
+				return 1;
+			}
+		}
+		else{
+			//wrong password
+			return 3;
+		}
+		
+	}
+
+	function change_password($username, $new_password, $current_password){
+		$pdo = pdo();
+
+		if($current_password == $_SESSION['password']){
+			$statement = $pdo->prepare("UPDATE users SET password='$new_password' WHERE username LIKE '$username'");
+			if($statement->execute()){
+				$_SESSION['password'] = $new_password;
+				return 2;
+			}
+			else{
+				echo '<h1>Det verkar som att någonting gick väldigt fel. Skicka detta error-meddelande till en admin så kommer vi ta en titt på det.</h1><br>';
+				print_r($statement->errorInfo());
+			}
+		}
+		else{
+			return 1;
+		}
+	}
+
 	//Kolla om användaren är inloggad
 	function logged_in(){
 		if(isset($_SESSION['username']) && isset($_SESSION['password'])){
@@ -105,22 +159,16 @@
 
 	function getSingleDbValue($columnName, $tableName, $prop, $value){
 		$pdo = pdo();
-		$value = '%'.$value.'%';
 
-		$statement = $pdo->prepare("SELECT * FROM $tableName WHERE $prop LIKE ?");
+		$statement = $pdo->prepare("SELECT * FROM $tableName WHERE $prop LIKE '?'");
 		$statement->bindParam(1, $value);
-		if($statement->execute())
-		{
+		if($statement->execute()){
 			$row = $statement->fetch(PDO::FETCH_ASSOC);
-			return $row["$columnName"];
+			return $row['$columnName'];
 		}
 		else{
 			print_r($statement->errorInfo());
 		}
-	}
-
-	function upload_thumbnail(){
-
 	}
 
 	/*

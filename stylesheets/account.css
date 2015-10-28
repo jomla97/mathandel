@@ -1,0 +1,71 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: WalkwayBold;
+}
+
+a{
+	text-decoration: none;
+}
+
+/*Walkway Semi-Bold*/
+@font-face {
+    font-family: 'WalkwaySemiBold';
+    src: url('fonts/WalkwaySemiBold.eot');
+    src: url('fonts/WalkwaySemiBold.eot') format('embedded-opentype'),
+         url('fonts/WalkwaySemiBold.woff2') format('woff2'),
+         url('fonts/WalkwaySemiBold.woff') format('woff'),
+         url('fonts/WalkwaySemiBold.ttf') format('truetype'),
+         url('fonts/WalkwaySemiBold.svg#WalkwaySemiBold') format('svg');
+}
+
+/*Walkway Bold*/
+@font-face {
+    font-family: 'WalkwayBold';
+    src: url('fonts/WalkwayBold.eot');
+    src: url('fonts/WalkwayBold.eot') format('embedded-opentype'),
+         url('fonts/WalkwayBold.woff2') format('woff2'),
+         url('fonts/WalkwayBold.woff') format('woff'),
+         url('fonts/WalkwayBold.ttf') format('truetype'),
+         url('fonts/WalkwayBold.svg#WalkwayBold') format('svg');
+}
+
+main{
+	margin: 300px auto 150px auto;
+	width: 960px;
+	padding: 0 auto;
+	background-color: white;
+    overflow: hidden;
+}
+
+main h2{
+    margin-top: 20px;
+    font-size: 35px;
+}
+
+main p{
+    font-size: 25px;
+}
+
+main #edit{
+    font-size: 18px;
+    background-color: #55ce30;
+    color: white;
+
+    margin-top: 30px;
+    padding: 10px;
+
+    display: inline-block;
+}
+main #edit:hover, main #edit:active{
+    background-color: #6bdb46;
+}
+
+#change-password{
+    display: inline-block;
+    font-size: 18px;
+    color: #55ce30;
+}
+#change-password:hover, #change-password:active{
+    color: #6bdb46;
+}

@@ -15,14 +15,14 @@
 				}
 				else{
 					echo '<a href="index.php?page=logout"><div id="logout-button">Logga ut</div></a>
-							<a href="index.php?page=account"><div id="account-button">Ditt konto</div></a>';
+							<a href="index.php?page=account"><div id="account-button">Mitt konto</div></a>';
 				}
 			?>
 			
 
 			<div id="search-and-wares">
 				<form id="search-form" name="searchbar" method="GET">
-					<input id="searchbar" type="text" name="query">
+					<input id="searchbar" type="text" name="query" required>
 					<input id="search-button" type="submit" value="Sök">
 				</form>
 				<a href="index.php?page=browse"><div id="browse-button">Bläddra vårt sortiment</div></a>
