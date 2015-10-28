@@ -40,6 +40,10 @@
       require "templates/login-page.php";
   }
 
+  else if($page == 'admin'){
+
+  }
+
   else{
     require "templates/startpage.php";
   }

@@ -7,9 +7,17 @@
 	</head>
 	<body>
 		<header>
-			<img id="header-image" src="res/header.jpg">
-			<a href="#"><div id="register-button">Registrera</div></a>
-			<a href="#"><div id="login-button">Logga in</div></a>
+			<a href="index.php"><img id="header-image" src="res/header.jpg"></a>
+			<?php
+				if(logged_in() == false){
+					echo '<a href="#"><div id="register-button">Registrera</div></a>
+							<a href="index.php?page=login"><div id="login-button">Logga in</div></a>';
+				}
+				else{
+					echo '<div id="logout-button">Logga ut</div>';
+				}
+			?>
+			
 
 			<div id="search-and-wares">
 				<form id="search-form" name="searchbar" method="GET">

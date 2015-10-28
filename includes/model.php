@@ -20,15 +20,24 @@
 		//Skapa en uppkoppling till databasen med hjälp av PDO
 		$pdo = pdo();
 
-		if($username == "jomla97" && $password == "smygen"){
-			$_SESSION['username'] = $username;
-			$_SESSION['password'] = $password;
-			$result = array("header" => "LOGGED IN", "content" => "Welcome Johannes! You are now logged in.");
-			return $result;
+		$statement = $pdo->prepare("SELECT * FROM users WHERE username LIKE '$username'");
+		$statement->execute();
+		$rowcount = $statement->rowCount();
+
+		if($rowcount >= 1){
+			$statement2 = $pdo->prepare("SELECT * FROM users WHERE username LIKE $username AND password LIKE '$password'");
+			$statement2->execute();
+			$rowcount = $statement2->rowCount();
+			if($rowcount >= 1){
+				$_SESSION['username'] = $username;
+				$_SESSION['password'] = $password;
+			}
+			else{
+				echo "Wrong password! Try again.";
+			}
 		}
 		else{
-			$result = array("header" => "LOGIN FAILED", "content" => "Login failed! Wrong username or password! <a href=\"index.php?page=admin\">Try again.</a>");
-		    return $result;
+			echo "There is no account with that username!";
 		}
 	}
 
@@ -70,15 +79,6 @@
 		}
 	}
 
-	function portfolio(){
-		$pdo = pdo();
-		$model = array();
-
-		foreach($pdo->query("SELECT * FROM projects") as $row){
-
-		}
-	}
-
 	function upload_thumbnail(){
 
 	}
@@ -113,57 +113,6 @@
 		}
 	}
 	*/
-
-	function add_project($title, $description, $category){
-		$file = $_FILES['thumbnail'];
-
-		//file properties
-		$file_name = $file['name'];
-		$file_tmp = $file['tmp_name'];
-		$file_error = $file['error'];
-
-		//work out the file extension
-		$file_ext = explode('.', $file_name);
-		$file_ext = strtolower(end($file_ext));
-
-		//upload file
-		if($file_error === 0){
-			$file_name_new = uniqid('', true) . '.' . $file_ext;
-			$file_destination = 'uploads/thumbnails/' . $file_name_new;
-
-			if(move_uploaded_file($file_tmp, $file_destination)){
-				//insert all data into the database and create the project
-				$pdo = pdo();
-				$statement = $pdo->prepare("INSERT INTO projects (title, description, thumbnail, category) VALUES (?, ?, ?, ?)");
-				$statement->bindParam(1, $title);
-				$statement->bindParam(2, $description);
-				$statement->bindParam(3, $file_destination);
-				$statement->bindParam(4, $category);
-
-				if($statement->execute()){
-					$failed_uploads = upload_project_images($title, $description, $file_destination);
-					if($failed_uploads > 0){
-						echo '
-							<script>
-								alert("' . $failed_uploads . ' failed.");
-							</script>
-						';
-					}
-
-					//header("location:index.php");
-				}
-				else{
-					echo 'Error. Something must have gone wrong. Try again.';
-				}
-
-				//header("location:index.php");
-			}
-			else{
-				echo 'Error. Something must have gone wrong. Try again.';
-			}
-		}
-		header("location:index.php");
-	}
 
 	function upload_project_images($title, $description, $thumbnail_destination){
 		if(!empty($_FILES['images']['name'][0])){
@@ -255,104 +204,6 @@
 	 				var result = alert("Your message has been sent. I will get back to \''.$email.'\' as soon as possible.");
 	 				window.location = "index.php";
 	 			</script>';
-	}
-
-	function delete_project($project_id){
-		$pdo = pdo();
-
-		//delete project images
-		foreach($pdo->query("SELECT * FROM project_images WHERE project_id LIKE $project_id") as $row){
-			unlink($row['file_destination']);
-		}
-		//delete project thumbnail
-		foreach($pdo->query("SELECT * FROM projects WHERE id LIKE $project_id") as $row){
-			unlink($row['thumbnail']);
-		}
-
-		//delete projectdata from the database
-		$statement2 = $pdo->prepare("DELETE FROM projects WHERE id LIKE ?");
-		$statement2->bindParam(1, $project_id);
-
-		if($statement2->execute()){
-			echo 'Project deleted!';
-			return true;
-		}
-		else{
-			echo 'Delete failed! <br>';
-			print_r($statement->errorInfo());
-			return false;
-		}
-	}
-
-	function edit_project($title, $description, $category, $project_id){
-		$pdo = pdo();
-
-		$statement = $pdo->prepare("UPDATE projects SET title=?, description=?, category=? WHERE id LIKE ?");
-		$statement->bindParam(1, $title);
-		$statement->bindParam(2, $description);
-		$statement->bindParam(3, $category);
-		$statement->bindParam(4, $project_id);
-
-		if($statement->execute()){
-			echo 'Project successfully edited!';
-			return true;
-		}
-		else{
-			echo 'Edit failed! <br>';
-			print_r($statement->errorInfo());
-			return false;
-		}
-	}
-
-	function add_skill($skill, $skill_level){
-		$pdo = pdo();
-
-		$statement = $pdo->prepare("INSERT INTO skills (skill, skill_level) VALUES (?, ?)");
-		$statement->bindParam(1, $skill);
-		$statement->bindParam(2, $skill_level);
-
-		if($statement->execute()){
-			echo 'Skill successfully added!';
-			header("location:index.php#myskills");
-		}
-		else{
-			echo 'Operation failed! The skill has not been added. <br>';
-			print_r($statement->errorInfo());
-		}
-	}
-
-	function edit_skill($skill, $skill_level, $skill_id){
-		$pdo = pdo();
-
-		$statement = $pdo->prepare("UPDATE skills SET skill=?, skill_level=? WHERE id LIKE ?");
-		$statement->bindParam(1, $skill);
-		$statement->bindParam(2, $skill_level);
-		$statement->bindParam(3, $skill_id);
-
-		if($statement->execute()){
-			echo 'Skill successfully added!';
-			header("location:index.php#myskills");
-		}
-		else{
-			echo 'Operation failed! The skill has not been added. <br>';
-			print_r($statement->errorInfo());
-		}
-	}
-
-	function delete_skill($skill_id){
-		$pdo = pdo();
-
-		$statement = $pdo->prepare("DELETE FROM skills WHERE id LIKE ?");
-		$statement->bindParam(1, $skill_id);
-
-		if($statement->execute()){
-			echo 'Skill successfully deleted!';
-			header("location:index.php#myskills");
-		}
-		else{
-			echo 'Operation failed! The skill has not been deleted. <br>';
-			print_r($statement->errorInfo());
-		}
 	}
 
 ?>
