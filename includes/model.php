@@ -123,6 +123,11 @@
 			$statement = $pdo->prepare("UPDATE users SET password='$new_password' WHERE username LIKE '$username'");
 			if($statement->execute()){
 				$_SESSION['password'] = $new_password;
+
+				$username = $_SESSION['username'];
+				foreach($pdo->query("SELECT * FROM users WHERE username LIKE '$username") as $row){
+					mail($row['email'], 'Lösenordsändring - Mathandel - Mathandel', 'Hej ' . $row['surname'] . '! Lösenordet för ditt konto på Mathandel har ändrats. Om detta var du kan du ignorera detta mejlet. Om detta inte var du ber vi dig att genast ändrar lösenordet på ditt konto då någon obehörig möjligtvis har fått tillgång till det. http://www.domain.se?page=account&action=change_password');
+				}
 				return 2;
 			}
 			else{
