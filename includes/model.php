@@ -45,6 +45,42 @@
 		}
 	}
 
+	function register($username, $password, $email, $surname, $lastname, $street, $ort, $postalcode){
+		$pdo = pdo();
+
+		//check if the username is taken
+		$statement = $pdo->prepare("SELECT * FROM users WHERE username LIKE '$username'");
+		$statement->execute();
+		$rowcount = $statement->rowCount();
+
+		if($rowcount < 1){
+			$statement = $pdo->prepare("SELECT * FROM users WHERE email LIKE '$email'");
+			$statement->execute();
+			$rowcount = $statement->rowCount();
+
+			if($rowcount < 1){
+				//register account
+				$statement = $pdo->prepare("INSERT INTO users (username, password, email, surname, lastname, street, ort, postalcode, access_level) VALUES ('$username', '$password', '$email', '$surname', '$lastname', '$street', '$ort', '$postalcode', 'user')");
+				if($statement->execute()){
+					mail($email, "Bekräftelse email - Mathandel", "Tack for att du registrerat ett konto hos oss, " . $surname . ".");
+					return 3;
+				}
+				else{
+					echo '<h1>Something must have gone wrong! Send this error message to an admin and we will look into it.</h1><br>';
+					print_r($statement->errorInfo());
+				}
+			}
+			else{
+				//email is taken
+				return 2;
+			}
+		}
+		else{
+			//username is taken
+			return 1;
+		}
+	}
+
 	//Kolla om användaren är inloggad
 	function logged_in(){
 		if(isset($_SESSION['username']) && isset($_SESSION['password'])){

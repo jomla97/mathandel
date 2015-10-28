@@ -14,7 +14,8 @@
 							<a href="index.php?page=login"><div id="login-button">Logga in</div></a>';
 				}
 				else{
-					echo '<a href="index.php?page=logout"><div id="logout-button">Logga ut</div></a>';
+					echo '<a href="index.php?page=logout"><div id="logout-button">Logga ut</div></a>
+							<a href="index.php?page=account"><div id="account-button">Ditt konto</div></a>';
 				}
 			?>
 			

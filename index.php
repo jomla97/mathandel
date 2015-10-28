@@ -25,7 +25,7 @@
 
 
   //CHECK WHAT PAGE THE USER IS ON
-  if($page == 'login' && logged_in() == false){
+  else if($page == 'login' && logged_in() == false){
      if(isset($_POST['username']) && isset($_POST['password'])){
 
      	$login = login($_POST['username'], $_POST['password']);
@@ -42,6 +42,32 @@
       }
 
       require "templates/login-page.php";
+  }
+
+  else if($page == "register"){
+  	if(logged_in()){
+  		header("location:index.php");
+  	}
+  	else{
+  		if(isset($_POST['username'])){
+  			$result = register($_POST['username'], $_POST['password'], $_POST['email'], $_POST['surname'], $_POST['lastname'], $_POST['street'], $_POST['ort'], $_POST['postalcode']);
+  			
+  			if($result == 1){
+  				$registration_error = "The username '" . $_POST['username'] . "' is taken. Try another one.";
+  			}
+  			else if($result == 2){
+  				$registration_error = "The email '" . $_POST['email'] . "' is taken. Try another one.";
+  			}
+  			else if($result == 3){
+  				header("location:index.php");
+  			}
+  		}
+  		require "templates/register-page.php";
+  	}
+  }
+
+  else if($page == "account"){
+  	require "templates/account-page.php";
   }
 
   else if($page == 'admin'){

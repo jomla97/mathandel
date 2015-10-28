@@ -59,18 +59,35 @@ a{
 	color: #6bdb46;
 }
 
-/*-------------Logout button-------------*/
+/*-------------Logout and account buttons-------------*/
 
-#logout-button{
+#account-button{
 	background-color: #55ce30;
 	color: white;
 	font-size: 35px;
 
 	padding: 10px 20px;
-	margin: 10px;
+	margin: 10px 0 10px 10px;
 
 	display: inline-block;
 	float: left;
+}
+#account-button:hover, #account-button:active{
+	background-color: #6bdb46;
+}
+
+#logout-button{
+	color: #55ce30;
+	font-size: 35px;
+
+	padding: 10px 20px;
+	margin: 10px 0;
+
+	display: inline-block;
+	float: left;
+}
+#logout-button:hover, #logout-button:active{
+	color: #6bdb46;
 }
 
 /*-----------Searchbar and "bläddra vårt sortiment" button-----------*/
