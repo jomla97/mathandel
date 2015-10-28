@@ -48,9 +48,29 @@ a{
 	color: white;
 	padding: 10px 20px;
 }
+#register-button:hover, #register-button:active{
+	background-color: #6bdb46;
+}
 #login-button{
 	color: #55ce30;
 	padding: 10px 0;
+}
+#login-button:hover, #login-button:active{
+	color: #6bdb46;
+}
+
+/*-------------Logout button-------------*/
+
+#logout-button{
+	background-color: #55ce30;
+	color: white;
+	font-size: 35px;
+
+	padding: 10px 20px;
+	margin: 10px;
+
+	display: inline-block;
+	float: left;
 }
 
 /*-----------Searchbar and "bläddra vårt sortiment" button-----------*/
@@ -76,6 +96,9 @@ a{
 
 	margin-left: -10px;
 }
+#search-button:hover, #search-button:active{
+	background-color: #6bdb46;
+}
 
 #browse-button{
 	background-color: #cd3c3c;
@@ -85,6 +108,9 @@ a{
 	color: white;
 	text-align: center;
 	font-size: 35px;
+}
+#browse-button:hover, #browse-button:active{
+	background-color: #e04545;
 }
 
 

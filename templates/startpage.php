@@ -16,7 +16,7 @@
 					</div>
 					<div class="buy">
 						<form name="purchase-item">
-							<input class="amount" type="number" name="amount" value="1">
+							<input class="quantity" type="number" name="quantity" min="1" max="99" value="1">
 							<p>st</p>
 							<input class="buy-button" type="submit" value="Köp">
 						</form>
@@ -34,7 +34,7 @@
 					</div>
 					<div class="buy">
 						<form name="purchase-item">
-							<input class="amount" type="number" name="amount" value="1">
+							<input class="quantity" type="number" name="quantity" min="1" max="99" value="1">
 							<p>st</p>
 							<input class="buy-button" type="submit" value="Köp">
 						</form>
@@ -52,7 +52,7 @@
 					</div>
 					<div class="buy">
 						<form name="purchase-item">
-							<input class="amount" type="number" name="amount" value="1">
+							<input class="quantity" type="number" name="quantity" min="1" max="99" value="1">
 							<p>st</p>
 							<input class="buy-button" type="submit" value="Köp">
 						</form>
@@ -70,7 +70,7 @@
 					</div>
 					<div class="buy">
 						<form name="purchase-item">
-							<input class="amount" type="number" name="amount" value="1">
+							<input class="quantity" type="number" name="quantity" min="1" max="99" value="1">
 							<p>st</p>
 							<input class="buy-button" type="submit" value="Köp">
 						</form>
@@ -88,7 +88,7 @@
 					</div>
 					<div class="buy">
 						<form name="purchase-item">
-							<input class="amount" type="number" name="amount" value="1">
+							<input class="quantity" type="number" name="quantity" min="1" max="99" value="1">
 							<p>st</p>
 							<input class="buy-button" type="submit" value="Köp">
 						</form>
@@ -106,7 +106,7 @@
 					</div>
 					<div class="buy">
 						<form name="purchase-item">
-							<input class="amount" type="number" name="amount" value="1">
+							<input class="quantity" type="number" name="quantity" min="1" max="99" value="1">
 							<p>st</p>
 							<input class="buy-button" type="submit" value="Köp">
 						</form>

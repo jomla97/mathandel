@@ -10,24 +10,24 @@
 			<a href="index.php"><img id="header-image" src="res/header.jpg"></a>
 			<?php
 				if(logged_in() == false){
-					echo '<a href="#"><div id="register-button">Registrera</div></a>
+					echo '<a href="index.php?page=register"><div id="register-button">Registrera</div></a>
 							<a href="index.php?page=login"><div id="login-button">Logga in</div></a>';
 				}
 				else{
-					echo '<div id="logout-button">Logga ut</div>';
+					echo '<a href="index.php?page=logout"><div id="logout-button">Logga ut</div></a>';
 				}
 			?>
 			
 
 			<div id="search-and-wares">
 				<form id="search-form" name="searchbar" method="GET">
-					<input id="searchbar" type="text" name="searchquery">
+					<input id="searchbar" type="text" name="query">
 					<input id="search-button" type="submit" value="Sök">
 				</form>
-				<a href="#"><div id="browse-button">Bläddra vårt sortiment</div></a>
+				<a href="index.php?page=browse"><div id="browse-button">Bläddra vårt sortiment</div></a>
 			</div>
 
-			<a href="#">
+			<a href="index.php?page=basket">
 				<div id="basket">
 					Totalt: 0 kr
 					<img id="basket-icon" src="res/basket-icon.png">

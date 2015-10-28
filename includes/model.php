@@ -6,9 +6,9 @@
 	function pdo(){
 		//Skapa en uppkoppling till databasen med hjälp av PDO
 		$host = "localhost";
-		$dbname = "portfolio";
-		$user = "jomla97";
-		$dbpassword = "smygenäger";
+		$dbname = "mathandel";
+		$user = "mathandel";
+		$dbpassword = "1234";
 		$attr = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC);
 		$dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
 		$pdo = new PDO($dsn, $user, $dbpassword, $attr);
@@ -25,19 +25,23 @@
 		$rowcount = $statement->rowCount();
 
 		if($rowcount >= 1){
-			$statement2 = $pdo->prepare("SELECT * FROM users WHERE username LIKE $username AND password LIKE '$password'");
+			$statement2 = $pdo->prepare("SELECT * FROM users WHERE username LIKE '$username' AND password LIKE '$password'");
 			$statement2->execute();
 			$rowcount = $statement2->rowCount();
 			if($rowcount >= 1){
 				$_SESSION['username'] = $username;
 				$_SESSION['password'] = $password;
+				return 1;
+				//username and password is a match! Successful login!
 			}
 			else{
-				echo "Wrong password! Try again.";
+				//wrong username or password!
+				return 2;
 			}
 		}
 		else{
-			echo "There is no account with that username!";
+			//there is no account with that username
+			return 3;
 		}
 	}
 

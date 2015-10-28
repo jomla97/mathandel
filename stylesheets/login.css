@@ -40,7 +40,6 @@ main{
 }
 
 main form{
-    background-color: #EBEBEB;
     display: inline-block;
     padding: 20px;
 }
@@ -61,4 +60,11 @@ main .login{
     color: white;
     background-color: #55ce30;
     border: none;
+}
+
+#login-error{
+    background-color: #cd3c3c;
+    color: white;
+
+    padding: 20px;
 }

@@ -5,7 +5,17 @@
 	</head>
 	<body>
 		<main>
-			<form method="POST" action="index.php">
+			
+			<form method="POST" action="index.php?page=login">
+				<?php
+					if(isset($login_error)){
+						echo '
+							<div id="login-error">
+								<p>'.$login_error.'</p>
+							</div>
+						';
+					}
+				?>
 				<input class="text-input" type="text" name="username" placeholder="Username..">
 				<input class="text-input" type="password" name="password" placeholder="Password..">
 				<input class="login" type="submit" value="Logga in">

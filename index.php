@@ -9,7 +9,7 @@
   $pdo = pdo();
 
   //Check if the user has logged out
-  if($logout){
+  if($page == "logout"){
     if(logged_in()){
       //call the function in model.php called "logout" to log the user out of the account and destroy the active session
       logout();
@@ -27,14 +27,18 @@
   //CHECK WHAT PAGE THE USER IS ON
   if($page == 'login' && logged_in() == false){
      if(isset($_POST['username']) && isset($_POST['password'])){
-        $result = login($_POST['username'], $_POST['password']);
-        if($result['header'] == 'LOGIN FAILED'){
-           $login_error = "Login failed. Check your username and password and try again.";
-          //require "templates/login-page.php";
-         }
-        else{
-           header("location:index.php");
-         }
+
+     	$login = login($_POST['username'], $_POST['password']);
+
+        if($login == 1){
+        	header("location:index.php");
+        }
+        else if($login == 2){
+           $login_error = "Wrong username or password! Try again.";
+        }
+        else if($login == 3){
+           $login_error = "There is no account with that username.";
+        }
       }
 
       require "templates/login-page.php";
