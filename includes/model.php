@@ -29,6 +29,14 @@
 			$statement2->execute();
 			$rowcount = $statement2->rowCount();
 			if($rowcount >= 1){
+				foreach($pdo->query("SELECT * FROM users WHERE username LIKE '$username'") as $row){
+					$access_level = $row['access_level'];
+				}
+
+				if($access_level == "admin"){
+					$_SESSION['admin'] = true;
+				}
+
 				$_SESSION['username'] = $username;
 				$_SESSION['password'] = $password;
 				return 1;
@@ -165,14 +173,8 @@
 	function getSingleDbValue($columnName, $tableName, $prop, $value){
 		$pdo = pdo();
 
-		$statement = $pdo->prepare("SELECT * FROM $tableName WHERE $prop LIKE '?'");
-		$statement->bindParam(1, $value);
-		if($statement->execute()){
-			$row = $statement->fetch(PDO::FETCH_ASSOC);
-			return $row['$columnName'];
-		}
-		else{
-			print_r($statement->errorInfo());
+		foreach($pdo->query("SELECT * FROM $tableName WHERE $prop LIKE '$value'") as $row){
+			return $row[$columnName];
 		}
 	}
 

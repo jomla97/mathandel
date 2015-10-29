@@ -31,11 +31,17 @@ a{
 }
 
 main{
-	margin: 300px auto 150px auto;
-	width: 960px;
+	margin: 200px auto 150px auto;
+	max-width: 960px;
 	padding: 0 auto;
 	background-color: white;
     overflow: hidden;
+}
+
+main h1{
+    font-size: 55px;
+    text-align: center;
+    margin-bottom: 70px;
 }
 
 main h2{
