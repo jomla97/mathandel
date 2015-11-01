@@ -32,66 +32,48 @@ a{
 
 main{
 	margin: 200px auto 150px auto;
-	max-width: 960px;
+	width: 960px;
 	padding: 0 auto;
 	background-color: white;
     overflow: hidden;
-}
-
-main h1{
-    font-size: 55px;
     text-align: center;
-    margin-bottom: 70px;
 }
 
-main h2{
-    margin-top: 20px;
-    font-size: 35px;
-}
-
-main p{
-    font-size: 25px;
-}
-
-main #edit{
-    font-size: 18px;
-    background-color: #55ce30;
-    color: white;
-
-    margin-top: 30px;
-    padding: 10px;
-
+main form{
     display: inline-block;
+    padding: 20px;
 }
-main #edit:hover, main #edit:active{
+
+main input{
+    display: block;
+    margin: 10px 0;
+}
+main .text-input{
+    padding: 7px;
+    font-size: 35px;
+    border: solid 3px #d7d7d7;
+}
+main .add{
+    padding: 10px 7px;
+    font-size: 35px;
+    width: 100%;
+    color: white;
+    background-color: #55ce30;
+    border: none;
+}
+main .add:hover, main .add:active{
     background-color: #6bdb46;
 }
 
-#change-password{
+select{
+    font-size: 25px;
+
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 100%;
+}
+
+#image-upload{
     display: inline-block;
-    font-size: 18px;
-    color: #55ce30;
-}
-#change-password:hover, #change-password:active{
-    color: #6bdb46;
-}
-
-/*-------------admin stuff--------------*/
-#admin-panel{
-    overflow: hidden;
-    margin: 40px -5px 0 -5px;
-}
-#admin-panel .admin-button{
-    width: 180px;
-    height: 180px;
-    margin: 5px;
-    background-color: #c4e6b9;
-
-    float: left;
-
-    text-align: center;
-    color: white;
-}
-#admin-panel .admin-button:hover, #admin-panel .admin-button:active{
-    background-color: #a7d398;
+    margin: 25px 0 10px 0;
 }

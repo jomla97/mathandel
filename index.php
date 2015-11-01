@@ -102,8 +102,21 @@
   	}
   }
 
-  else if($page == 'admin'){
+  else if($page == 'admin' && isset($_SESSION['admin']) && $_SESSION['admin'] == true && isset($_GET['action'])){
+  	if($_GET['action'] == 'add_product'){
+  		if(isset($_POST['name'])){
+  			add_product($_POST['name'], $_POST['contents'], $_POST['amount'], $_POST['nutriments'], $_POST['allergens'], $_POST['category']);
+  		}
 
+  		require "templates/admin/add-product.php";
+  	}
+  	else if($_GET['action'] == 'add_category'){
+  		if(isset($_POST['name'])){
+  			add_category($_POST['name']);
+  		}
+
+  		require "templates/admin/add-category.php";
+  	}
   }
 
   else{

@@ -10,6 +10,8 @@
 				$pdo = pdo();
 				$username = $_SESSION['username'];
 				$password = $_SESSION['password'];
+
+				//general account information
 				foreach($pdo->query("SELECT * FROM users WHERE username LIKE '$username' AND password LIKE '$password'") as $row){
 					if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){
 						echo '
@@ -52,7 +54,27 @@
 						';
 					}
 				}
+
+				//admin panel
+				if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){
+
+				}
 			?>
+
+			<div id="admin-panel">
+				<h1>Admin panel</h1>
+				<a href="index.php?page=admin&action=add_product">
+					<div class="admin-button" title="Lägg till produkt">
+						<img src="res/add-product-icon.png">
+					</div>
+				</a>
+
+				<a href="index.php?page=admin&action=add_category">
+					<div class="admin-button" title="Lägg till produktkategori">
+						<img src="res/add-category-icon.png">
+					</div>
+				</a>
+			</div>
 		</main>
 	</body>
 </html>

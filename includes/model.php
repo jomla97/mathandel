@@ -178,127 +178,62 @@
 		}
 	}
 
-	/*
-	function add_project($title, $description){
-		//thumbnail
-		$file = $_FILES['image']['tmp_name'];
-		$image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
-		$image_name = addslashes($_FILES['image']['name']);
-		$image_size = getimagesize($file);
+	//ADMIN FUNCTIONS------------------------------------------------------------------------
 
-		if($image_size == FALSE){
-			return "ERROR";
-		}
-		else{
-			$pdo = pdo();
-			$statement = $pdo->prepare("INSERT INTO projects (title, description) VALUES (?, ?)");
-			$statement->bindParam(1, $title);
-			$statement->bindParam(2, $description);
+	function add_product($name, $contents, $amount, $nutriments, $allergens, $category){
+		$pdo = pdo();
 
-			$project_id = getSingleDbValue("id", "projects", "title", $title);
-			$statement2 = $pdo->prepare("INSERT INTO images (name, image) VALUES ($image_name, $image)");
-			$statement2->execute();
-		}
+		$file = $_FILES['image'];
 
-		if($statement->execute()){
-			return "SUCCESS";
-		}
-		else{
-			return "ERROR";
-		}
-	}
-	*/
+		//file properties
+		$file_name = $file['name'];
+		$file_tmp = $file['tmp_name'];
+		$file_error = $file['error'];
 
-	function upload_project_images($title, $description, $thumbnail_destination){
-		if(!empty($_FILES['images']['name'][0])){
-			$pdo = pdo();
+		//work out the file extension
+		$file_ext = explode('.', $file_name);
+		$file_ext = strtolower(end($file_ext));
 
-			//declare new variable for ease of use
-			$files = $_FILES['images'];
+		//upload file
+		if($file_error === 0){
+			$file_name_new = uniqid('', true) . '.' . $file_ext;
+			$file_destination = 'uploads/' . $file_name_new;
 
-			//count the amount of failed uploads
-			$failed_uploads = 0;
+			if(move_uploaded_file($file_tmp, $file_destination)){
 
-			//uploaded and failed arrays to store both successful uploads as well as failed uploads
-			$uploaded = array();
-			$failed = array();
-
-			//get the project id
-			$project_id = getSingleDbValue('id', 'projects', 'thumbnail', $thumbnail_destination);
-
-			//for each file the user has selected to upload, do this
-			foreach($files['name'] as $position => $file_name){
-				$file_tmp = $files['tmp_name'][$position];
-				$file_error = $files['error'][$position];
-
-				//get the file extension so that the filename can be changed later on
-				$file_ext = explode('.', $file_name);
-				$file_ext = strtolower(end($file_ext));
-
-				if($file_error === 0){
-					//declare new randomized filename
-					$file_name_new = uniqid('', true) . '.' . $file_ext;
-					$file_destination = 'uploads/project_images/' . $file_name_new;
-
-					//upload the selected file
-					if(move_uploaded_file($file_tmp, $file_destination)){
-						$uploaded[$position] = $file_destination;
-						
-						$statement = $pdo->prepare("INSERT INTO project_images (project_id, file_destination) VALUES (?, ?)");
-						$statement->bindParam(1, $project_id);
-						$statement->bindParam(2, $file_destination);
-						
-						if($statement->execute()){
-							echo 'Database upload successful! <br>';
-						}
-						else{
-							echo 'Database upload failed! <br>';
-							print_r($statement->errorInfo());
-							echo '<br>';
-						}
-					}
-					else{
-						//if the upload failed, add it to the array for failed uploads
-						$failed[$position] = "[{$file_name}] failed to upload file.";
-						$failed_uploads++;
-					}
+				//insert all data into the database and create the product
+				$statement = $pdo->prepare("INSERT INTO products (name, contents, amount, nutriments, allergens, category, image) VALUES ('$name', '$contents', '$amount', '$nutriments', '$allergens', '$category', '$file_destination')");
+				
+				if($statement->execute()){
+					header("location:index.php?page=account#admin-panel");
 				}
 				else{
-					//if the upload failed, add it to the array for failed uploads
-					$failed[$position] = "[{$file_name}] error with code {$file_error}.";
-					$failed_uploads++;
+					echo '<h1>Something must have gone wrong! Send this error message to an admin and we will look into it.</h1><br>';
+					print_r($statement->errorInfo());
 				}
+
+				//header("location:index.php");
 			}
-			echo 'Successful uploads: <br>';
-  			print_r($uploaded);
-			echo '<br>Failed uploads: <br>';
-  			print_r($failed);
+			else{
+				echo 'Error. Something must have gone wrong. Try again.';
+			}
 		}
+
 		
-		return $failed_uploads;
 	}
 
-	function add_new_category($category){
+	function add_category($name){
 		$pdo = pdo();
-		$statement = $pdo->prepare("INSERT INTO project_categories (category) VALUES (?)");
-		$statement->bindParam(1, $category);
 
+		$statement = $pdo->prepare("INSERT INTO categories (name) VALUES ('$name')");
+		
 		if($statement->execute()){
-			echo 'Database upload successful!';
+			header("location:index.php?page=account#admin-panel");
 		}
 		else{
-			echo 'Database upload failed! <br>';
+			echo '<h1>Something must have gone wrong! Send this error message to an admin and we will look into it.</h1><br>';
 			print_r($statement->errorInfo());
 		}
-	}
-
-	//take the form input from the user and send it to my email
-	function contact($email, $name, $message){
-	 	mail('email@johannesnyman.se', 'Message through your website form', $message, 'From: ' . $name . ' - ' . $email);
-	 	echo '<script>
-	 				var result = alert("Your message has been sent. I will get back to \''.$email.'\' as soon as possible.");
-	 				window.location = "index.php";
-	 			</script>';
 	}
 
 ?>
