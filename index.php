@@ -97,6 +97,9 @@
   		}
   		require "templates/change-password.php";
   	}
+    else if(isset($_GET['action']) && $_GET['action'] == 'delete_product' && isset($_GET['id'])){
+      delete_product($_GET['id']);
+    }
   	else{
   		require "templates/account-page.php";
   	}
@@ -105,7 +108,7 @@
   else if($page == 'admin' && isset($_SESSION['admin']) && $_SESSION['admin'] == true && isset($_GET['action'])){
   	if($_GET['action'] == 'add_product'){
   		if(isset($_POST['name'])){
-  			add_product($_POST['name'], $_POST['contents'], $_POST['amount'], $_POST['nutriments'], $_POST['allergens'], $_POST['category']);
+  			add_product($_POST['name'], $_POST['contents'], $_POST['amount'], $_POST['nutriments'], $_POST['allergens'], $_POST['category'], $_POST['price'], $_POST['comparement_price'], $_POST['comparement_type']);
   		}
 
   		require "templates/admin/add-product.php";

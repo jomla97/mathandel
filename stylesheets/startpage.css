@@ -55,7 +55,8 @@ main{
     position: relative;
 }
 .product-wrapper img{
-    width: 150px;
+    max-width: 150px;
+    max-height: 140px;
     margin-top: 10px;
 }
 
@@ -111,4 +112,23 @@ main{
     background-color: #55ce30;
     padding: 7px 10px;
     width: 105px;
+}
+.buy .buy-button:hover, .buy .buy-button:active{
+    background-color: #6bdb46;
+}
+
+.product-delete-button{
+    background-color: #cd3c3c;
+    color: white;
+
+    padding: 10px;
+
+    display: inline-block;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.product-delete-button:hover, .product-delete-button:active{
+    background-color: #e04545;
 }

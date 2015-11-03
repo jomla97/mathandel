@@ -180,7 +180,7 @@
 
 	//ADMIN FUNCTIONS------------------------------------------------------------------------
 
-	function add_product($name, $contents, $amount, $nutriments, $allergens, $category){
+	function add_product($name, $contents, $amount, $nutriments, $allergens, $category, $price, $comparement_price, $comparement_type){
 		$pdo = pdo();
 
 		$file = $_FILES['image'];
@@ -202,7 +202,7 @@
 			if(move_uploaded_file($file_tmp, $file_destination)){
 
 				//insert all data into the database and create the product
-				$statement = $pdo->prepare("INSERT INTO products (name, contents, amount, nutriments, allergens, category, image) VALUES ('$name', '$contents', '$amount', '$nutriments', '$allergens', '$category', '$file_destination')");
+				$statement = $pdo->prepare("INSERT INTO products (name, contents, amount, nutriments, allergens, category, image, price, comparement_price, comparement_type) VALUES ('$name', '$contents', '$amount', '$nutriments', '$allergens', '$category', '$file_destination', '$price', '$comparement_price', '$comparement_type')");
 				
 				if($statement->execute()){
 					header("location:index.php?page=account#admin-panel");
@@ -218,8 +218,24 @@
 				echo 'Error. Something must have gone wrong. Try again.';
 			}
 		}
+		else{
+			echo "The image failed to upload! Try again.";
+		}
 
 		
+	}
+
+	function delete_product($id){
+		$pdo = pdo();
+
+		$statement = $pdo->prepare("DELETE FROM products WHERE id LIKE '$id'");
+		if($statement->execute()){
+			header("location:index.php");
+		}
+		else{
+			echo '<h1>Something must have gone wrong! Send this error message to an admin and we will look into it.</h1><br>';
+			print_r($statement->errorInfo());
+		}
 	}
 
 	function add_category($name){

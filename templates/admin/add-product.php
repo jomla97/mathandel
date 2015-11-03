@@ -21,6 +21,15 @@
 				<input class="text-input" type="text" name="amount" placeholder="Mängd (volym, vikt).." required>
 				<input class="text-input" type="text" name="nutriments" placeholder="Näringsvärden.." required>
 				<input class="text-input" type="text" name="allergens" placeholder="Allergener.." required>
+				<input class="text-input" type="number" name="price" placeholder="Pris.." required>
+				<input class="text-input" type="number" name="comparement_price" placeholder="Jämförspris..">
+
+				<select placeholder="Jmf.typ" name="comparement_type">
+					<option value="" disabled selected>Välj jämförstyp</option>
+					<option value="kr/kg" >kr/kg</option>
+					<option value="kr/liter" >kr/liter</option>
+				</select>
+
 				<select placeholder="Kategori" name="category" required>
 					<option value="" disabled selected>Välj kategori</option>
 					<?php
