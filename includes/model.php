@@ -245,12 +245,14 @@
 	function delete_product($id){
 		$pdo = pdo();
 
+		foreach($pdo->query("SELECT * FROM products WHERE id LIKE '$id'") as $row){
+			unlink($row['image']);
+		}
+
 		$statement = $pdo->prepare("DELETE FROM products WHERE id LIKE '$id'");
 		if($statement->execute()){
 			//delete the uploaded image linked to the product
-			foreach($pdo->query("SELECT * FROM products WHERE id LIKE '$id'") as $row){
-				unlink($row['image']);
-			}
+			
 			header("location:index.php");
 		}
 		else{
