@@ -27,26 +27,42 @@
 			-->
 			<?php
 				foreach($pdo->query("SELECT * FROM products") as $row){
+<<<<<<< HEAD
 					echo '<a href="index.php?page=product&id=' . $row['id'] . '"><div class="product-wrapper">';
 
 					if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){
 						echo '
 							<a onclick="return confirm_product_delete()" href="index.php?page=admin&action=delete_product&id=' . $row['id'] . '">
+=======
+					echo '<div class="product-wrapper">';
+
+					if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){
+						echo '
+							<a onclick="return confirm_product_delete()" href="index.php?page=account&action=delete_product&id=' . $row['id'] . '">
+>>>>>>> 2c104e57922a3e20fc77c7c9d388ea1f9dc5274e
 								<div class="product-delete-button">
 									<p>X</p>
 								</div>
 							</a>
+<<<<<<< HEAD
 							<a href="index.php?page=admin&action=edit_product&id=' . $row['id'] . '">
 								<div class="product-edit-button">
 									<img src="res/edit-icon.png">
 								</div>
 							</a>
+=======
+>>>>>>> 2c104e57922a3e20fc77c7c9d388ea1f9dc5274e
 						';
 					}
 
 					echo '
+<<<<<<< HEAD
 							<a href="index.php?page=product&id=' . $row['id'] . '"><img src="' . $row['image'] . '"></a>
 							<a href="index.php?page=product&id=' . $row['id'] . '"><h2>' . $row['name'] . '</h2></a>';
+=======
+							<img src="' . $row['image'] . '">
+							<h2>' . $row['name'] . '</h2>';
+>>>>>>> 2c104e57922a3e20fc77c7c9d388ea1f9dc5274e
 
 					if($row['comparement_price'] != "" || $row['comparement_price'] != 0){
 						echo '
@@ -67,7 +83,11 @@
 									</form>
 								</div>
 							</div>
+<<<<<<< HEAD
 						</div></a>
+=======
+						</div>
+>>>>>>> 2c104e57922a3e20fc77c7c9d388ea1f9dc5274e
 					';
 				}
 			?>

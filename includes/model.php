@@ -219,6 +219,7 @@
 			}
 		}
 		else{
+<<<<<<< HEAD
 			echo "The image failed to upload! Try again. File error: " . $file_error;
 		}
 
@@ -237,6 +238,9 @@
 		else{
 			echo '<h1>Something must have gone wrong! Send this error message to an admin and we will look into it.</h1><br>';
 			print_r($statement->errorInfo());
+=======
+			echo "The image failed to upload! Try again.";
+>>>>>>> 2c104e57922a3e20fc77c7c9d388ea1f9dc5274e
 		}
 
 		
@@ -247,10 +251,13 @@
 
 		$statement = $pdo->prepare("DELETE FROM products WHERE id LIKE '$id'");
 		if($statement->execute()){
+<<<<<<< HEAD
 			//delete the uploaded image linked to the product
 			foreach($pdo->query("SELECT * FROM products WHERE id LIKE '$id'") as $row){
 				unlink($row['image']);
 			}
+=======
+>>>>>>> 2c104e57922a3e20fc77c7c9d388ea1f9dc5274e
 			header("location:index.php");
 		}
 		else{

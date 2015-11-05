@@ -123,6 +123,7 @@ main{
     background-color: #6bdb46;
 }
 
+<<<<<<< HEAD
 .product-delete-button, .product-edit-button{
     color: white;
 
@@ -150,6 +151,19 @@ main{
 
 .product-delete-button{
     background-color: #cd3c3c;
+=======
+.product-delete-button{
+    background-color: #cd3c3c;
+    color: white;
+
+    padding: 10px;
+
+    display: inline-block;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+>>>>>>> 2c104e57922a3e20fc77c7c9d388ea1f9dc5274e
 }
 .product-delete-button:hover, .product-delete-button:active{
     background-color: #e04545;

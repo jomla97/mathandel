@@ -97,6 +97,9 @@
   		}
   		require "templates/change-password.php";
   	}
+    else if(isset($_GET['action']) && $_GET['action'] == 'delete_product' && isset($_GET['id'])){
+      delete_product($_GET['id']);
+    }
   	else{
   		require "templates/account-page.php";
   	}
