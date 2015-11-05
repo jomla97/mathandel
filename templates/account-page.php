@@ -57,24 +57,24 @@
 
 				//admin panel
 				if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){
+					echo '
+						<div id="admin-panel">
+							<h1>Admin panel</h1>
+							<a href="index.php?page=admin&action=add_product">
+								<div class="admin-button" title="Lägg till produkt">
+									<img src="res/add-product-icon.png">
+								</div>
+							</a>
 
+							<a href="index.php?page=admin&action=add_category">
+								<div class="admin-button" title="Lägg till produktkategori">
+									<img src="res/add-category-icon.png">
+								</div>
+							</a>
+						</div>
+					';
 				}
 			?>
-
-			<div id="admin-panel">
-				<h1>Admin panel</h1>
-				<a href="index.php?page=admin&action=add_product">
-					<div class="admin-button" title="Lägg till produkt">
-						<img src="res/add-product-icon.png">
-					</div>
-				</a>
-
-				<a href="index.php?page=admin&action=add_category">
-					<div class="admin-button" title="Lägg till produktkategori">
-						<img src="res/add-category-icon.png">
-					</div>
-				</a>
-			</div>
 		</main>
 	</body>
 </html>
