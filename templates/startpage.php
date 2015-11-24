@@ -27,21 +27,26 @@
 			-->
 			<?php
 				foreach($pdo->query("SELECT * FROM products") as $row){
-					echo '<div class="product-wrapper">';
+					echo '<a href="index.php?page=product&id=' . $row['id'] . '"><div class="product-wrapper">';
 
 					if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){
 						echo '
-							<a onclick="return confirm_product_delete()" href="index.php?page=account&action=delete_product&id=' . $row['id'] . '">
+							<a onclick="return confirm_product_delete()" href="index.php?page=admin&action=delete_product&id=' . $row['id'] . '">
 								<div class="product-delete-button">
 									<p>X</p>
+								</div>
+							</a>
+							<a href="index.php?page=admin&action=edit_product&id=' . $row['id'] . '">
+								<div class="product-edit-button">
+									<img src="res/edit-icon.png">
 								</div>
 							</a>
 						';
 					}
 
 					echo '
-							<img src="' . $row['image'] . '">
-							<h2>' . $row['name'] . '</h2>';
+							<a href="index.php?page=product&id=' . $row['id'] . '"><img src="' . $row['image'] . '"></a>
+							<a href="index.php?page=product&id=' . $row['id'] . '"><h2>' . $row['name'] . '</h2></a>';
 
 					if($row['comparement_price'] != "" || $row['comparement_price'] != 0){
 						echo '
@@ -62,7 +67,7 @@
 									</form>
 								</div>
 							</div>
-						</div>
+						</div></a>
 					';
 				}
 			?>

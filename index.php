@@ -23,6 +23,10 @@
     }
   }
 
+  else if(isset($_GET['search_query'])){
+    require "templates/search.php";
+  }
+
 
   //CHECK WHAT PAGE THE USER IS ON
   else if($page == 'login' && logged_in() == false){
@@ -97,9 +101,6 @@
   		}
   		require "templates/change-password.php";
   	}
-    else if(isset($_GET['action']) && $_GET['action'] == 'delete_product' && isset($_GET['id'])){
-      delete_product($_GET['id']);
-    }
   	else{
   		require "templates/account-page.php";
   	}
@@ -113,13 +114,34 @@
 
   		require "templates/admin/add-product.php";
   	}
-  	else if($_GET['action'] == 'add_category'){
-  		if(isset($_POST['name'])){
-  			add_category($_POST['name']);
-  		}
+    else if($_GET['action'] == 'add_category'){
+      if(isset($_POST['name'])){
+        add_category($_POST['name']);
+      }
 
-  		require "templates/admin/add-category.php";
-  	}
+      require "templates/admin/add-category.php";
+    }
+    else if($_GET['action'] == 'delete_account'){
+      if(isset($_POST['id'])){
+        delete_account($_POST['id']);
+      }
+
+      require "templates/admin/delete-account.php";
+    }
+    else if(isset($_GET['action']) && $_GET['action'] == 'delete_product' && isset($_GET['id'])){
+      delete_product($_GET['id']);
+    }
+    else if(isset($_GET['action']) && $_GET['action'] == 'edit_product' && isset($_GET['id'])){
+      if(isset($_POST['name'])){
+        edit_product($_POST['name'], $_POST['contents'], $_POST['amount'], $_POST['nutriments'], $_POST['allergens'], $_POST['category'], $_POST['price'], $_POST['comparement_price'], $_POST['comparement_type'], $_GET['id']);
+      }
+
+      require "templates/admin/edit-product.php";
+    }
+  }
+
+  else if($page == 'product' && isset($_GET['id'])){
+    require "templates/product-page.php";
   }
 
   else{

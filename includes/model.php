@@ -219,7 +219,24 @@
 			}
 		}
 		else{
-			echo "The image failed to upload! Try again.";
+			echo "The image failed to upload! Try again. File error: " . $file_error;
+		}
+
+		
+	}
+
+	function edit_product($name, $contents, $amount, $nutriments, $allergens, $category, $price, $comparement_price, $comparement_type, $id){
+		$pdo = pdo();
+
+		//insert all data into the database and create the product
+		$statement = $pdo->prepare("UPDATE products SET name='$name', contents='$contents', amount='$amount', nutriments='$nutriments', allergens='$allergens', category='$category', price='$price', comparement_price='$comparement_price', comparement_type='$comparement_type' WHERE id LIKE '$id'");
+				
+		if($statement->execute()){
+			header("location:index.php");
+		}
+		else{
+			echo '<h1>Something must have gone wrong! Send this error message to an admin and we will look into it.</h1><br>';
+			print_r($statement->errorInfo());
 		}
 
 		
@@ -228,8 +245,14 @@
 	function delete_product($id){
 		$pdo = pdo();
 
+		foreach($pdo->query("SELECT * FROM products WHERE id LIKE '$id'") as $row){
+			unlink($row['image']);
+		}
+
 		$statement = $pdo->prepare("DELETE FROM products WHERE id LIKE '$id'");
 		if($statement->execute()){
+			//delete the uploaded image linked to the product
+			
 			header("location:index.php");
 		}
 		else{
@@ -248,6 +271,20 @@
 		}
 		else{
 			echo '<h1>Something must have gone wrong! Send this error message to an admin and we will look into it.</h1><br>';
+			print_r($statement->errorInfo());
+		}
+	}
+
+	function delete_account($id){
+		$pdo = pdo();
+
+		$statement = $pdo->prepare("DELETE FROM users WHERE id LIKE '$id'");
+
+		if($statement->execute()){
+			//header("location:index.php?page=account#admin-panel");
+		}
+		else{
+			echo '<h1>Something must have gone wrong!</h1><br>';
 			print_r($statement->errorInfo());
 		}
 	}
