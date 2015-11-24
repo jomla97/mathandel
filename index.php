@@ -43,6 +43,9 @@
         else if($login == 3){
            $login_error = "There is no account with that username.";
         }
+        else if($login == 4){
+           $login_error = "This account has been banned indefinitely.";
+        }
       }
 
       require "templates/login-page.php";
@@ -141,6 +144,13 @@
       }
 
       require "templates/admin/delete-account.php";
+    }
+    else if($_GET['action'] == 'ban_account'){
+      if(isset($_POST['id'])){
+        ban_account($_POST['id']);
+      }
+
+      require "templates/admin/ban-account.php";
     }
     else if(isset($_GET['action']) && $_GET['action'] == 'delete_product' && isset($_GET['id'])){
       delete_product($_GET['id']);

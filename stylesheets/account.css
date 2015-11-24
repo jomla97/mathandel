@@ -89,7 +89,7 @@ main #edit:hover, main #edit:active{
     overflow: hidden;
     margin: 40px -5px 0 -5px;
 }
-#admin-panel .admin-button-green, #admin-panel .admin-button-red, #admin-panel .admin-button-blue{
+#admin-panel .admin-button-green, #admin-panel .admin-button-red, #admin-panel .admin-button-blue, #admin-panel .admin-button-orange{
     width: 180px;
     height: 180px;
     margin: 5px;
@@ -108,6 +108,9 @@ main #edit:hover, main #edit:active{
 #admin-panel .admin-button-blue{
     background-color: #7adbff;
 }
+#admin-panel .admin-button-orange{
+    background-color: #ffc86b;
+}
 #admin-panel .admin-button-green:hover, #admin-panel .admin-button-green:active{
     background-color: #a7d398;
 }
@@ -116,6 +119,9 @@ main #edit:hover, main #edit:active{
 }
 #admin-panel .admin-button-blue:hover, #admin-panel .admin-button-blue:active{
     background-color: #62c9ef;
+}
+#admin-panel .admin-button-orange:hover, #admin-panel .admin-button-orange:active{
+    background-color: #eab456;
 }
 
 .admin-wrapper{

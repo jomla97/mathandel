@@ -31,10 +31,15 @@
 			if($rowcount >= 1){
 				foreach($pdo->query("SELECT * FROM users WHERE username LIKE '$username'") as $row){
 					$access_level = $row['access_level'];
+					$status = $row['status'];
 				}
 
 				if($access_level == "admin"){
 					$_SESSION['admin'] = true;
+				}
+
+				if($status == "banned"){
+					return 4;
 				}
 
 				$_SESSION['username'] = $username;
@@ -68,7 +73,7 @@
 
 			if($rowcount < 1){
 				//register account
-				$statement = $pdo->prepare("INSERT INTO users (username, password, email, surname, lastname, street, ort, postalcode, access_level) VALUES ('$username', '$password', '$email', '$surname', '$lastname', '$street', '$ort', '$postalcode', 'user')");
+				$statement = $pdo->prepare("INSERT INTO users (username, password, email, surname, lastname, street, ort, postalcode, access_level, status) VALUES ('$username', '$password', '$email', '$surname', '$lastname', '$street', '$ort', '$postalcode', 'user', 'active')");
 				if($statement->execute()){
 					mail($email, "Bekräftelse email - Mathandel", "Tack for att du registrerat ett konto hos oss, " . $surname . ".");
 					return 3;
@@ -150,10 +155,30 @@
 
 	//Kolla om användaren är inloggad
 	function logged_in(){
+		$pdo = pdo();
+		
 		if(isset($_SESSION['username']) && isset($_SESSION['password'])){
-			return true;
+			$username = $_SESSION['username'];
+			$password = $_SESSION['password'];
+			$statement = $pdo->prepare("SELECT status FROM users WHERE username LIKE '$username' AND password LIKE '$password'");
+			$statement->execute();
+			$status = $statement->fetchColumn();
+
+			if($status == "banned"){
+				if(isset($_SESSION)){
+					session_destroy();
+					session_unset();
+				}
+				return false;
+			}
+			else{
+				return true;
+			}
 		}
 		else{
+			if(isset($_SESSION)){
+				session_unset();
+			}
 			return false;
 		}
 	}
@@ -285,7 +310,7 @@
 		
 		if($statement2->execute()){
 			$statement3 = $pdo->prepare("UPDATE products SET category='$name' WHERE category LIKE '$oldname'");
-			
+
 			if($statement3->execute()){
 				header("location:index.php?page=account#admin-panel");
 			}
@@ -329,6 +354,20 @@
 		$pdo = pdo();
 
 		$statement = $pdo->prepare("DELETE FROM users WHERE id LIKE '$id'");
+
+		if($statement->execute()){
+			header("location:index.php?page=account#admin-panel");
+		}
+		else{
+			echo '<h1>Something must have gone wrong!</h1><br>';
+			print_r($statement->errorInfo());
+		}
+	}
+
+	function ban_account($id){
+		$pdo = pdo();
+
+		$statement = $pdo->prepare("UPDATE users SET status='banned' WHERE id LIKE '$id'");
 
 		if($statement->execute()){
 			header("location:index.php?page=account#admin-panel");

@@ -101,6 +101,16 @@
 									</div>
 								</a>
 							</div>
+
+							<h3>Övrigt</h3>
+
+							<div class="admin-wrapper">
+								<a href="index.php?page=admin&action=ban_account">
+									<div class="admin-button-orange" title="Banna ett användarkonto">
+										<img src="res/ban-user-icon.png">
+									</div>
+								</a>
+							</div>
 						</div>
 					';
 				}

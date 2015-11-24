@@ -2,6 +2,11 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="stylesheets/admin/add-category.css">
+		<script type="text/javascript">
+			function confirmdelete(){
+				return confirm("Är du säker på att du vill radera detta användarkonto? Detta går inte att ångra.");
+			}
+		</script>
 	</head>
 	<body>
 		<main>
@@ -16,7 +21,7 @@
 				?>
 				</select>
 
-				<input class="add" type="submit" value="Radera">
+				<input onclick="return confirmdelete()" class="add" type="submit" value="Radera">
 			</form>
 		</main>
 	</body>
