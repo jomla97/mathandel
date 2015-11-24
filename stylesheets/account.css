@@ -49,6 +49,14 @@ main h2{
     font-size: 35px;
 }
 
+main h3{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 40px;
+    text-align: center;
+    display: block;
+}
+
 main p{
     font-size: 25px;
 }
@@ -81,7 +89,7 @@ main #edit:hover, main #edit:active{
     overflow: hidden;
     margin: 40px -5px 0 -5px;
 }
-#admin-panel .admin-button-green, #admin-panel .admin-button-red{
+#admin-panel .admin-button-green, #admin-panel .admin-button-red, #admin-panel .admin-button-blue{
     width: 180px;
     height: 180px;
     margin: 5px;
@@ -97,9 +105,21 @@ main #edit:hover, main #edit:active{
 #admin-panel .admin-button-red{
     background-color: #d87575;
 }
+#admin-panel .admin-button-blue{
+    background-color: #7adbff;
+}
 #admin-panel .admin-button-green:hover, #admin-panel .admin-button-green:active{
     background-color: #a7d398;
 }
 #admin-panel .admin-button-red:hover, #admin-panel .admin-button-red:active{
     background-color: #c95c5c;
+}
+#admin-panel .admin-button-blue:hover, #admin-panel .admin-button-blue:active{
+    background-color: #62c9ef;
+}
+
+.admin-wrapper{
+    max-width: 100%;
+    position: relative;
+    overflow: hidden;
 }

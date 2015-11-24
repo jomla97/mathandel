@@ -121,6 +121,13 @@
 
       require "templates/admin/add-category.php";
     }
+    else if($_GET['action'] == 'edit_category'){
+      if(isset($_POST['name']) && isset($_POST['id'])){
+        edit_category($_POST['name'], $_POST['id']);
+      }
+
+      require "templates/admin/edit-category.php";
+    }
     else if($_GET['action'] == 'delete_category'){
       if(isset($_POST['id'])){
         delete_category($_POST['id']);

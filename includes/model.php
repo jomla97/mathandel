@@ -275,17 +275,28 @@
 		}
 	}
 
-	function delete_account($id){
+	function edit_category($name, $id){
 		$pdo = pdo();
+		$statement = $pdo->prepare("SELECT name FROM categories WHERE id LIKE '$id'");
+		$statement->execute();
+		$oldname = $statement->fetchColumn();
 
-		$statement = $pdo->prepare("DELETE FROM users WHERE id LIKE '$id'");
-
-		if($statement->execute()){
-			header("location:index.php?page=account#admin-panel");
+		$statement2 = $pdo->prepare("UPDATE categories SET name='$name' WHERE id LIKE '$id'");
+		
+		if($statement2->execute()){
+			$statement3 = $pdo->prepare("UPDATE products SET category='$name' WHERE category LIKE '$oldname'");
+			
+			if($statement3->execute()){
+				header("location:index.php?page=account#admin-panel");
+			}
+			else{
+				echo '<h1>Something must have gone wrong! Send this error message to an admin and we will look into it.</h1><br>';
+				print_r($statement3->errorInfo());
+			}
 		}
 		else{
-			echo '<h1>Something must have gone wrong!</h1><br>';
-			print_r($statement->errorInfo());
+			echo '<h1>Something must have gone wrong! Send this error message to an admin and we will look into it.</h1><br>';
+			print_r($statement2->errorInfo());
 		}
 	}
 
@@ -311,6 +322,20 @@
 		else{
 			echo '<h1>Something must have gone wrong!</h1><br>';
 			print_r($statement3->errorInfo());
+		}
+	}
+
+	function delete_account($id){
+		$pdo = pdo();
+
+		$statement = $pdo->prepare("DELETE FROM users WHERE id LIKE '$id'");
+
+		if($statement->execute()){
+			header("location:index.php?page=account#admin-panel");
+		}
+		else{
+			echo '<h1>Something must have gone wrong!</h1><br>';
+			print_r($statement->errorInfo());
 		}
 	}
 

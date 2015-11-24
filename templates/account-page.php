@@ -60,29 +60,47 @@
 					echo '
 						<div id="admin-panel">
 							<h1>Admin</h1>
-							<a href="index.php?page=admin&action=add_product">
-								<div class="admin-button-green" title="Lägg till produkt">
-									<img src="res/add-product-icon.png">
-								</div>
-							</a>
+							<h3>Lägg till</h3>
 
-							<a href="index.php?page=admin&action=add_category">
-								<div class="admin-button-green" title="Lägg till produktkategori">
-									<img src="res/add-category-icon.png">
-								</div>
-							</a>
+							<div class="admin-wrapper">
+								<a href="index.php?page=admin&action=add_product">
+									<div class="admin-button-green" title="Lägg till produkt">
+										<img src="res/add-product-icon.png">
+									</div>
+								</a>
 
-							<a href="index.php?page=admin&action=delete_category">
-								<div class="admin-button-red" title="Ta bort en produktkategori">
-									<img src="res/delete-category-icon.png">
-								</div>
-							</a>
+								<a href="index.php?page=admin&action=add_category">
+									<div class="admin-button-green" title="Lägg till produktkategori">
+										<img src="res/add-category-icon.png">
+									</div>
+								</a>
+							</div>
 
-							<a href="index.php?page=admin&action=delete_account">
-								<div class="admin-button-red" title="Ta bort ett användarkonto">
-									<img src="res/delete-user-icon.png">
-								</div>
-							</a>
+							<h3>Redigera</h3>
+
+							<div class="admin-wrapper">
+								<a href="index.php?page=admin&action=edit_category">
+									<div class="admin-button-blue" title="Redigera en produktkategori">
+										<img src="res/edit-category-icon.png">
+									</div>
+								</a>
+							</div>
+
+							<h3>Ta bort</h3>
+
+							<div class="admin-wrapper">
+								<a href="index.php?page=admin&action=delete_category">
+									<div class="admin-button-red" title="Ta bort en produktkategori">
+										<img src="res/delete-category-icon.png">
+									</div>
+								</a>
+
+								<a href="index.php?page=admin&action=delete_account">
+									<div class="admin-button-red" title="Ta bort ett användarkonto">
+										<img src="res/delete-user-icon.png">
+									</div>
+								</a>
+							</div>
 						</div>
 					';
 				}
