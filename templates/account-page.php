@@ -59,7 +59,7 @@
 				if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){
 					echo '
 						<div id="admin-panel">
-							<h1>Admin panel</h1>
+							<h1>Admin</h1>
 							<a href="index.php?page=admin&action=add_product">
 								<div class="admin-button-green" title="Lägg till produkt">
 									<img src="res/add-product-icon.png">
@@ -69,6 +69,12 @@
 							<a href="index.php?page=admin&action=add_category">
 								<div class="admin-button-green" title="Lägg till produktkategori">
 									<img src="res/add-category-icon.png">
+								</div>
+							</a>
+
+							<a href="index.php?page=admin&action=delete_category">
+								<div class="admin-button-red" title="Ta bort en produktkategori">
+									<img src="res/delete-category-icon.png">
 								</div>
 							</a>
 

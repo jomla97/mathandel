@@ -119,8 +119,14 @@
         add_category($_POST['name']);
       }
 
-<<<<<<< HEAD
       require "templates/admin/add-category.php";
+    }
+    else if($_GET['action'] == 'delete_category'){
+      if(isset($_POST['id'])){
+        delete_category($_POST['id']);
+      }
+
+      require "templates/admin/delete-category.php";
     }
     else if($_GET['action'] == 'delete_account'){
       if(isset($_POST['id'])){
@@ -129,10 +135,6 @@
 
       require "templates/admin/delete-account.php";
     }
-=======
-  		require "templates/admin/add-category.php";
-  	}
->>>>>>> 8911dffe131b6e8abe87ce8b0b18e8f1b1381327
     else if(isset($_GET['action']) && $_GET['action'] == 'delete_product' && isset($_GET['id'])){
       delete_product($_GET['id']);
     }

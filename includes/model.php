@@ -281,11 +281,36 @@
 		$statement = $pdo->prepare("DELETE FROM users WHERE id LIKE '$id'");
 
 		if($statement->execute()){
-			//header("location:index.php?page=account#admin-panel");
+			header("location:index.php?page=account#admin-panel");
 		}
 		else{
 			echo '<h1>Something must have gone wrong!</h1><br>';
 			print_r($statement->errorInfo());
+		}
+	}
+
+	function delete_category($id){
+		$pdo = pdo();
+
+		$statement2 = $pdo->prepare("SELECT name FROM categories WHERE id LIKE '$id'");
+		$statement2->execute();
+		$categoryname = $statement2->fetchColumn();
+
+		$statement = $pdo->prepare("UPDATE products SET category='okänt' WHERE category LIKE '$categoryname'");
+
+		if($statement->execute()){}
+		else{
+			echo '<h1>Something must have gone wrong!</h1><br>';
+			print_r($statement->errorInfo());
+		}
+
+		$statement3 = $pdo->prepare("DELETE FROM categories WHERE name LIKE '$categoryname'");
+		if($statement3->execute()){
+			header("location:index.php?page=account#admin-panel");
+		}
+		else{
+			echo '<h1>Something must have gone wrong!</h1><br>';
+			print_r($statement3->errorInfo());
 		}
 	}
 

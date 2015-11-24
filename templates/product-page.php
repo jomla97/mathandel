@@ -46,6 +46,9 @@
 
 							<h2>Allergener</h2>
 							<p>' . $row['allergens'] . '</p>
+
+							<h2>Kategori</h2>
+							<p>' . $row['category'] . '</p>
 						';
 					}
 				?>
