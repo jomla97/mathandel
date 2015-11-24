@@ -152,6 +152,13 @@
 
       require "templates/admin/ban-account.php";
     }
+    else if($_GET['action'] == 'grant_admin_priviliges'){
+      if(isset($_POST['id'])){
+        grant_admin_priviliges($_POST['id']);
+      }
+
+      require "templates/admin/grant-admin-priviliges.php";
+    }
     else if(isset($_GET['action']) && $_GET['action'] == 'delete_product' && isset($_GET['id'])){
       delete_product($_GET['id']);
     }

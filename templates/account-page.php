@@ -110,6 +110,12 @@
 										<img src="res/ban-user-icon.png">
 									</div>
 								</a>
+
+								<a href="index.php?page=admin&action=grant_admin_priviliges">
+									<div class="admin-button-orange" title="Gör ett konto till admin">
+										<img src="res/grant-admin-priviliges-icon.png">
+									</div>
+								</a>
 							</div>
 						</div>
 					';
