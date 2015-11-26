@@ -32,7 +32,7 @@
 
 		<script type="text/javascript">
 			$("#sorting-list-title").click(function(){
-			    $(".category").toggle();
+			    $(".category").slideToggle();
 
 			    if($(this).children("img").attr("src") == "res/not-expanded-arrow-icon.png"){
 			    	$(this).children("img").attr("src", "res/expanded-arrow-icon.png")
@@ -43,7 +43,7 @@
 			});
 
 			$(".category").click(function(){
-			    $(this).children("ul").toggle();
+			    $(this).children("ul").slideToggle();
 
 			    if($(this).children("img").attr("src") == "res/not-expanded-arrow-icon.png"){
 			    	$(this).children("img").attr("src", "res/expanded-arrow-icon.png")
@@ -51,6 +51,13 @@
 			    else{
 			    	$(this).children("img").attr("src", "res/not-expanded-arrow-icon.png")
 			    }
+			});
+
+			$(".sorting-list-product").hover(function(){
+			    $(".category").css("background-color", "#83d46a");
+			},
+			function(){
+			    $(".category").css("background-color", "");
 			});
 		</script>
 	</body>

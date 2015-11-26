@@ -6,6 +6,9 @@
 	margin-bottom: 10px;
 	display: inline-block;
 }
+#sorting-list-wrapper h1{
+	font-weight: normal;
+}
 
 .category ul{
 	display: none;
@@ -15,6 +18,10 @@
 	max-width: 80%;
 	display: inline-block;
 	color: white;
+	font-weight: normal;
+}
+.category h2:hover, .category h2:active{
+	text-decoration: underline;
 }
 .category{
 	color: white;
@@ -60,4 +67,18 @@
 	border: solid 3px #d7d7d7;
 	color: black;
 	margin-top: -3px;
+}
+.sorting-list-product:hover, .sorting-list-product:active{
+	background-color: #f7f7f7;
+}
+.sorting-list-product:hover + .category, .sorting-list-product:active + .category{
+	background-color: pink;
+}
+
+.rotated {
+  transform: rotate(90deg);
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -moz-transform: rotate(90deg); /* Firefox */
+  -webkit-transform: rotate(90deg); /* Safari and Chrome */
+  -o-transform: rotate(90deg); /* Opera */
 }

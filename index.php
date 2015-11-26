@@ -38,13 +38,13 @@
         	header("location:index.php");
         }
         else if($login == 2){
-           $login_error = "Wrong username or password! Try again.";
+           $login_error = "Fel användarnamn eller lösenord. Försök igen.";
         }
         else if($login == 3){
-           $login_error = "There is no account with that username.";
+           $login_error = "Det finns inget konto med det användarnamnet.";
         }
         else if($login == 4){
-           $login_error = "This account has been banned indefinitely.";
+           $login_error = "Detta kontot har blivit permanent bannat.";
         }
       }
 
