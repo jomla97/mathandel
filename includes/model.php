@@ -75,8 +75,13 @@
 				//register account
 				$statement = $pdo->prepare("INSERT INTO users (username, password, email, surname, lastname, street, ort, postalcode, access_level, status) VALUES ('$username', '$password', '$email', '$surname', '$lastname', '$street', '$ort', '$postalcode', 'user', 'active')");
 				if($statement->execute()){
-					mail($email, "Bekräftelse email - Mathandel", "Tack for att du registrerat ett konto hos oss, " . $surname . ".");
-					return 3;
+					if(mail('test@localhost', "Bekräftelse email - Mathandel", "Tack for att du registrerat ett konto hos oss, " . $surname . ".", "From: localhost")){
+						echo 'email skickat!';
+					}
+					else{
+						echo 'email inte skickat!';
+					}
+					//return 3;
 				}
 				else{
 					echo '<h1>Something must have gone wrong! Send this error message to an admin and we will look into it.</h1><br>';

@@ -1,0 +1,63 @@
+#sorting-list-wrapper{
+	width: 200px;
+	position: absolute;
+	left: 10px;
+	margin-top: 90px;
+	margin-bottom: 10px;
+	display: inline-block;
+}
+
+.category ul{
+	display: none;
+}
+.category h2{
+	padding: 20px;
+	max-width: 80%;
+	display: inline-block;
+	color: white;
+}
+.category{
+	color: white;
+	background-color: #83d46a;
+	width: 290px;
+	list-style-type: none;
+	display: none;
+	position: relative;
+}
+.category:hover, .category:active{
+	background-color: #8fe273;
+}
+.category img{
+	width: 30px;
+	position: absolute;
+	top: 8px;
+	right: 0;
+	padding: 10px;
+}
+
+#sorting-list-title{
+	padding: 20px;
+	color: white;
+	width: 250px;
+	list-style-type: none;
+	background-color: #55ce30;
+	position: relative;
+}
+#sorting-list-title:hover, #sorting-list-title:active{
+	background-color: #6bdb46;
+}
+#sorting-list-title img{
+	width: 30px;
+	position: absolute;
+	top: 50%;
+	margin-top: -15px;
+	right: 10px;
+}
+
+.sorting-list-product{
+	padding: 20px;
+	background-color: #ebebeb;
+	border: solid 3px #d7d7d7;
+	color: black;
+	margin-top: -3px;
+}

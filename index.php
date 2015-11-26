@@ -171,6 +171,12 @@
     }
   }
 
+  else if($page == 'browse'){
+    if(isset($_GET['sort_by'])){
+      require "templates/sort-by-category.php";
+    }
+  }
+
   else if($page == 'product' && isset($_GET['id'])){
     require "templates/product-page.php";
   }

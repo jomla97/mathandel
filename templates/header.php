@@ -3,6 +3,7 @@
 	<head>
 		<title>Mathandel - Mat Direkt Till Hemmet</title>
 		<link rel="stylesheet" type="text/css" href="stylesheets/header.css">
+		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 		<meta charset="UTF-8">
 	</head>
 	<body>
@@ -35,5 +36,9 @@
 				</div>
 			</a>
 		</header>
+
+		<?php
+			require "templates/sorting-list.php";
+		?>
 	</body>
 </html>
