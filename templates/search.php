@@ -28,7 +28,7 @@
 			<?php
 				$search_query = $_GET['search_query'];
 
-				$statement = $pdo->prepare("SELECT * FROM products WHERE name LIKE '%{$search_query}%'");
+				$statement = $pdo->prepare("SELECT * FROM products WHERE name LIKE '%{$search_query}%' OR category LIKE '%{$search_query}%'");
 				$statement->execute();
 				$rowcount = $statement->rowCount();
 
@@ -37,7 +37,7 @@
 				}
 				else{
 					echo '<h1>Resultat för sökningen \'' . $search_query. '\'</h1>';
-					foreach($pdo->query("SELECT * FROM products WHERE name LIKE '%{$search_query}%'") as $row){
+					foreach($pdo->query("SELECT * FROM products WHERE name LIKE '%{$search_query}%' OR category LIKE '%{$search_query}%'") as $row){
 
 						echo '<a href="index.php?page=product&id=' . $row['id'] . '"><div class="product-wrapper">';
 
