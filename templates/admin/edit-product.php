@@ -67,7 +67,7 @@
 				
 				<a href="index.php?page=admin&action=add_category"><p>Lägg till en ny kategori</p></a>
 
-				<input class="add" type="submit" value="Lägg till">
+				<input class="add" type="submit" value="Redigera">
 			</form>
 		</main>
 	</body>

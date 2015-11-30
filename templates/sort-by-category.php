@@ -26,7 +26,7 @@
 			</div>
 			-->
 			<?php
-				echo '<h1>Sorterar efter varor i kategorin \'' . $_GET['sort_by'] . '\'</h1>';
+				echo '<h1 style="margin-bottom: 50px;">Sorterar efter varor i kategorin \'' . $_GET['sort_by'] . '\'</h1>';
 				$sort_by = $_GET['sort_by'];
 				foreach($pdo->query("SELECT * FROM products WHERE category LIKE '$sort_by'") as $row){
 					echo '<a href="index.php?page=product&id=' . $row['id'] . '"><div class="product-wrapper">';

@@ -5,6 +5,7 @@
 	margin-top: 90px;
 	margin-bottom: 10px;
 	display: inline-block;
+	z-index: 100;
 }
 #sorting-list-wrapper h1{
 	font-weight: normal;
@@ -82,3 +83,21 @@
   -webkit-transform: rotate(90deg); /* Safari and Chrome */
   -o-transform: rotate(90deg); /* Opera */
 }
+
+.rotateOpen {
+    -webkit-animation:open 0.1s linear 1;
+    -moz-animation:open 0.1s linear 1;
+    animation:open 0.1s linear 1;
+}
+@-moz-keyframes open { 100% { -moz-transform: rotate(-90deg); } }
+@-webkit-keyframes open { 100% { -webkit-transform: rotate(-90deg); } }
+@keyframes open { 100% { -webkit-transform: rotate(-90deg); transform:rotate(-90deg); } }
+
+.rotateClose {
+    -webkit-animation:close 0.1s linear 1;
+    -moz-animation:close 0.1s linear 1;
+    animation:close 0.1s linear 1;
+}
+@-moz-keyframes close { 100% { -moz-transform: rotate(90deg); } }
+@-webkit-keyframes close { 100% { -webkit-transform: rotate(90deg); } }
+@keyframes close { 100% { -webkit-transform: rotate(90deg); transform:rotate(90deg); } }
