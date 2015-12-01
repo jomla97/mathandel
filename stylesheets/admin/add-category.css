@@ -53,6 +53,12 @@ main .text-input{
     font-size: 35px;
     border: solid 3px #d7d7d7;
 }
+main .textarea{
+    padding: 7px;
+    font-size: 35px;
+    border: solid 3px #d7d7d7;
+    width: 400px;
+}
 main .add{
     padding: 10px 7px;
     font-size: 35px;

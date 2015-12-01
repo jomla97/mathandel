@@ -131,6 +131,41 @@
 
       require "templates/admin/edit-category.php";
     }
+    else if($_GET['action'] == 'edit_about'){
+      if(isset($_POST['text'])){
+        edit_about($_POST['text']);
+      }
+
+      require "templates/admin/edit-about.php";
+    }
+    else if($_GET['action'] == 'edit_help'){
+      if(isset($_POST['text'])){
+        edit_help($_POST['text']);
+      }
+
+      require "templates/admin/edit-help.php";
+    }
+    else if($_GET['action'] == 'edit_terms'){
+      if(isset($_POST['text'])){
+        edit_terms($_POST['text']);
+      }
+
+      require "templates/admin/edit-terms.php";
+    }
+    else if($_GET['action'] == 'edit_delivery_times'){
+      if(isset($_POST['text'])){
+        edit_delivery_times($_POST['text']);
+      }
+
+      require "templates/admin/edit-delivery-times.php";
+    }
+    else if($_GET['action'] == 'edit_delivery_method'){
+      if(isset($_POST['text'])){
+        edit_delivery_method($_POST['text']);
+      }
+
+      require "templates/admin/edit-delivery-method.php";
+    }
     else if($_GET['action'] == 'delete_category'){
       if(isset($_POST['id'])){
         delete_category($_POST['id']);
@@ -179,6 +214,10 @@
 
   else if($page == 'product' && isset($_GET['id'])){
     require "templates/product-page.php";
+  }
+
+  else if($page == 'about' || $page == 'contact' || $page == 'terms' || $page == 'help' || $page == 'delivery_times' || $page == 'delivery_method'){
+    require "templates/info-page.php";
   }
 
   else{

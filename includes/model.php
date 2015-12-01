@@ -390,7 +390,77 @@
 
 		if($statement->execute()){
 			echo '<h1>GJORD TILL ADMIN</h1>';
-			//header("location:index.php?page=account#admin-panel");
+			header("location:index.php?page=account#admin-panel");
+		}
+		else{
+			echo '<h1>Something must have gone wrong!</h1><br>';
+			print_r($statement->errorInfo());
+		}
+	}
+
+	function edit_about($text){
+		$pdo = pdo();
+
+		$statement = $pdo->prepare("UPDATE website_info SET text='$text' WHERE slug LIKE 'about'");
+
+		if($statement->execute()){
+			header("location:index.php?page=account#admin-panel");
+		}
+		else{
+			echo '<h1>Something must have gone wrong!</h1><br>';
+			print_r($statement->errorInfo());
+		}
+	}
+
+	function edit_help($text){
+		$pdo = pdo();
+
+		$statement = $pdo->prepare("UPDATE website_info SET text='$text' WHERE slug LIKE 'help'");
+
+		if($statement->execute()){
+			header("location:index.php?page=account#admin-panel");
+		}
+		else{
+			echo '<h1>Something must have gone wrong!</h1><br>';
+			print_r($statement->errorInfo());
+		}
+	}
+
+	function edit_terms($text){
+		$pdo = pdo();
+
+		$statement = $pdo->prepare("UPDATE website_info SET text='$text' WHERE slug LIKE 'terms'");
+
+		if($statement->execute()){
+			header("location:index.php?page=account#admin-panel");
+		}
+		else{
+			echo '<h1>Something must have gone wrong!</h1><br>';
+			print_r($statement->errorInfo());
+		}
+	}
+
+	function edit_delivery_times($text){
+		$pdo = pdo();
+
+		$statement = $pdo->prepare("UPDATE website_info SET text='$text' WHERE slug LIKE 'delivery_times'");
+
+		if($statement->execute()){
+			header("location:index.php?page=account#admin-panel");
+		}
+		else{
+			echo '<h1>Something must have gone wrong!</h1><br>';
+			print_r($statement->errorInfo());
+		}
+	}
+
+	function edit_delivery_method($text){
+		$pdo = pdo();
+
+		$statement = $pdo->prepare("UPDATE website_info SET text='$text' WHERE slug LIKE 'delivery_method'");
+
+		if($statement->execute()){
+			header("location:index.php?page=account#admin-panel");
 		}
 		else{
 			echo '<h1>Something must have gone wrong!</h1><br>';

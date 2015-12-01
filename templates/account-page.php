@@ -84,6 +84,31 @@
 										<img src="res/edit-category-icon.png">
 									</div>
 								</a>
+								<a href="index.php?page=admin&action=edit_about">
+									<div class="admin-button-blue" title="Redigera \'Om oss\' sidan">
+										<img src="res/edit-about-icon.png">
+									</div>
+								</a>
+								<a href="index.php?page=admin&action=edit_help">
+									<div class="admin-button-blue" title="Redigera \'Hjälp\' sidan">
+										<img src="res/edit-help-icon.png">
+									</div>
+								</a>
+								<a href="index.php?page=admin&action=edit_terms">
+									<div class="admin-button-blue" title="Redigera \'Allmänna villkor\'">
+										<img src="res/edit-terms-icon.png">
+									</div>
+								</a>
+								<a href="index.php?page=admin&action=edit_delivery_times">
+									<div class="admin-button-blue" title="Redigera \'När levererar vi?\' sidan">
+										<img src="res/edit-delivery-times-icon.png">
+									</div>
+								</a>
+								<a href="index.php?page=admin&action=edit_delivery_method">
+									<div class="admin-button-blue" title="Redigera \'Hur levererar vi?\' sidan">
+										<img src="res/edit-delivery-method-icon.png">
+									</div>
+								</a>
 							</div>
 
 							<h3>Ta bort</h3>

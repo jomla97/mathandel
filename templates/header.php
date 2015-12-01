@@ -1,3 +1,7 @@
+<?php
+	ob_start();
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -20,7 +24,6 @@
 				}
 			?>
 			
-
 			<div id="search-and-wares">
 				<form id="search-form" name="searchbar" method="GET">
 					<input id="searchbar" type="text" name="search_query" required>

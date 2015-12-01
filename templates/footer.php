@@ -7,18 +7,18 @@
 		<footer>
 			<table>
 				<tr>
-					<td>När levererar vi?</td>
-					<td>Om oss</td>
+					<td><a href="index.php?page=delivery_times">När levererar vi?</td></a>
+					<td><a href="index.php?page=about">Om oss</td></a>
 					<td>Kontakta oss:</td>
 				</tr>
 				<tr>
-					<td>Hur levererar vi?</td>
-					<td>Hjälp</td>
+					<td><a href="index.php?page=delivery_method">Hur levererar vi?</td></a>
+					<td><a href="index.php?page=help">Hjälp</td></a>
 					<td>support@domain.se</td>
 				</tr>
 				<tr>
 					<td>Bli företagskund</td>
-					<td>Allmänna villkor</td>
+					<td><a href="index.php?page=terms">Allmänna villkor</a></td>
 					<td>Tel: 420 - 00 13 37</td>
 				</tr>
 			</table>
