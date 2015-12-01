@@ -141,6 +141,12 @@
 										<img src="res/grant-admin-priviliges-icon.png">
 									</div>
 								</a>
+
+								<a href="index.php?page=admin&action=delete_admin_priviliges">
+									<div class="admin-button-orange" title="Gör ett adminkonto till vanligt konto">
+										<img src="res/delete-admin-priviliges-icon.png">
+									</div>
+								</a>
 							</div>
 						</div>
 					';

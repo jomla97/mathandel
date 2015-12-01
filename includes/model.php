@@ -389,7 +389,22 @@
 		$statement = $pdo->prepare("UPDATE users SET access_level='admin' WHERE id LIKE '$id'");
 
 		if($statement->execute()){
-			echo '<h1>GJORD TILL ADMIN</h1>';
+			//echo '<h1>GJORD TILL ADMIN</h1>';
+			header("location:index.php?page=account#admin-panel");
+		}
+		else{
+			echo '<h1>Something must have gone wrong!</h1><br>';
+			print_r($statement->errorInfo());
+		}
+	}
+
+	function delete_admin_priviliges($id){
+		$pdo = pdo();
+
+		$statement = $pdo->prepare("UPDATE users SET access_level='user' WHERE id LIKE '$id'");
+
+		if($statement->execute()){
+			//echo '<h1>GJORD TILL VANLIGT KONTO</h1>';
 			header("location:index.php?page=account#admin-panel");
 		}
 		else{

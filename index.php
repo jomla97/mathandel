@@ -194,6 +194,13 @@
 
       require "templates/admin/grant-admin-priviliges.php";
     }
+    else if($_GET['action'] == 'delete_admin_priviliges'){
+      if(isset($_POST['id'])){
+        delete_admin_priviliges($_POST['id']);
+      }
+
+      require "templates/admin/delete-admin-priviliges.php";
+    }
     else if(isset($_GET['action']) && $_GET['action'] == 'delete_product' && isset($_GET['id'])){
       delete_product($_GET['id']);
     }
