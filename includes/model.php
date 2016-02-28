@@ -1,5 +1,5 @@
 <?php
-	
+
 	//Starta en session
 	session_start();
 
@@ -131,7 +131,7 @@
 			//wrong password
 			return 3;
 		}
-		
+
 	}
 
 	function change_password($username, $new_password, $current_password){
@@ -161,7 +161,7 @@
 	//Kolla om användaren är inloggad
 	function logged_in(){
 		$pdo = pdo();
-		
+
 		if(isset($_SESSION['username']) && isset($_SESSION['password'])){
 			$username = $_SESSION['username'];
 			$password = $_SESSION['password'];
@@ -233,7 +233,7 @@
 
 				//insert all data into the database and create the product
 				$statement = $pdo->prepare("INSERT INTO products (name, contents, amount, nutriments, allergens, category, image, price, comparement_price, comparement_type) VALUES ('$name', '$contents', '$amount', '$nutriments', '$allergens', '$category', '$file_destination', '$price', '$comparement_price', '$comparement_type')");
-				
+
 				if($statement->execute()){
 					header("location:index.php?page=account#admin-panel");
 				}
@@ -252,7 +252,7 @@
 			echo "The image failed to upload! Try again. File error: " . $file_error;
 		}
 
-		
+
 	}
 
 	function edit_product($name, $contents, $amount, $nutriments, $allergens, $category, $price, $comparement_price, $comparement_type, $id){
@@ -260,7 +260,7 @@
 
 		//insert all data into the database and create the product
 		$statement = $pdo->prepare("UPDATE products SET name='$name', contents='$contents', amount='$amount', nutriments='$nutriments', allergens='$allergens', category='$category', price='$price', comparement_price='$comparement_price', comparement_type='$comparement_type' WHERE id LIKE '$id'");
-				
+
 		if($statement->execute()){
 			header("location:index.php");
 		}
@@ -269,7 +269,7 @@
 			print_r($statement->errorInfo());
 		}
 
-		
+
 	}
 
 	function delete_product($id){
@@ -282,7 +282,7 @@
 		$statement = $pdo->prepare("DELETE FROM products WHERE id LIKE '$id'");
 		if($statement->execute()){
 			//delete the uploaded image linked to the product
-			
+
 			header("location:index.php");
 		}
 		else{
@@ -295,7 +295,7 @@
 		$pdo = pdo();
 
 		$statement = $pdo->prepare("INSERT INTO categories (name) VALUES ('$name')");
-		
+
 		if($statement->execute()){
 			header("location:index.php?page=account#admin-panel");
 		}
@@ -312,7 +312,7 @@
 		$oldname = $statement->fetchColumn();
 
 		$statement2 = $pdo->prepare("UPDATE categories SET name='$name' WHERE id LIKE '$id'");
-		
+
 		if($statement2->execute()){
 			$statement3 = $pdo->prepare("UPDATE products SET category='$name' WHERE category LIKE '$oldname'");
 
@@ -481,6 +481,19 @@
 			echo '<h1>Something must have gone wrong!</h1><br>';
 			print_r($statement->errorInfo());
 		}
+	}
+
+	function add_to_basket($id, $quantity){
+		$pdo = pdo();
+
+		for($quantity; $quantity > 0; $quantity--){
+			$statement = $pdo->prepare("INSERT INTO baskets (username, item_id) VALUES (?, ?)");
+			$statement->bindParam(1, $_SESSION['username']);
+			$statement->bindParam(2, $id);
+			$statement->execute();
+		}
+
+		header("location:index.php?page=product&id=" . $id);
 	}
 
 ?>

@@ -54,7 +54,7 @@
 				?>
 			</div>
 			<div id="buy">
-				<form name="purchase-item">
+				<form name="purchase-item" action="index.php?page=product&id=<?php echo $id; ?>" method="post">
 					<input class="text-input" type="number" name="quantity" min="1" max="99" value="1">
 					<p>st</p>
 					<input class="buy-button" type="submit" value="Köp">

@@ -35,7 +35,7 @@
      	$login = login($_POST['username'], $_POST['password']);
 
         if($login == 1){
-        	header("location:index.php");
+
         }
         else if($login == 2){
            $login_error = "Fel användarnamn eller lösenord. Försök igen.";
@@ -58,7 +58,7 @@
   	else{
   		if(isset($_POST['username'])){
   			$result = register($_POST['username'], $_POST['password'], $_POST['email'], $_POST['surname'], $_POST['lastname'], $_POST['street'], $_POST['ort'], $_POST['postalcode']);
-  			
+
   			if($result == 1){
   				$registration_error = "Användarnamnet '" . $_POST['username'] . "' är tagen. Försök med en annan.";
   			}
@@ -217,9 +217,15 @@
     if(isset($_GET['sort_by'])){
       require "templates/sort-by-category.php";
     }
+    else{
+      require "templates/browse.php";
+    }
   }
 
   else if($page == 'product' && isset($_GET['id'])){
+    if(isset($_POST['quantity'])){
+      add_to_basket($_GET['id'], $_POST['quantity']);
+    }
     require "templates/product-page.php";
   }
 
