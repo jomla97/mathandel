@@ -229,6 +229,10 @@
     require "templates/product-page.php";
   }
 
+  else if($page == "basket" && logged_in()){
+    require "templates/basket.php";
+  }
+
   else if($page == 'about' || $page == 'contact' || $page == 'terms' || $page == 'help' || $page == 'delivery_times' || $page == 'delivery_method'){
     require "templates/info-page.php";
   }

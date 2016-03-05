@@ -1,0 +1,49 @@
+.item{
+  height: 100px;
+  border: solid 4px #EBEBEB;
+  position: relative;
+}
+.item form{
+  position: absolute;
+  right: 0;
+  background-color: #EBEBEB;
+  height: 100%;
+  padding: 0 10px;
+}
+.item img{
+  height: 90px;
+  margin: 5px;
+  position: absolute;
+}
+.item h1{
+  text-align: left;
+  margin-left: 110px;
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+}
+.item .label{
+  background-color: #2D2D2D;
+  display: inline-block;
+}
+.item form input, .item form button.delete-button, .item form .label{
+  height: 90px;
+  margin: 5px 0;
+  font-size: 40px;
+}
+
+.item form input{
+  width: 100px;
+  text-align: center;
+  height: 86px;
+}
+.item form button.delete-button{
+  width: 90px;
+  color: white;
+  background-color: #cd3c3c;
+  border: none;
+  margin-right: -5px;
+}
+.item form button.delete-button:hover, .item form button.delete-button:active{
+  background-color: #e04545;
+}
