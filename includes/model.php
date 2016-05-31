@@ -1,8 +1,5 @@
 <?php
 
-	//Starta en session
-	session_start();
-
 	function pdo(){
 		//Skapa en uppkoppling till databasen med hjälp av PDO
 		$host = "localhost";

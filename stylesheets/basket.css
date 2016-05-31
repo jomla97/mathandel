@@ -3,12 +3,38 @@
   border: solid 4px #EBEBEB;
   position: relative;
 }
-.item form{
+.item .item-inner-wrapper{
   position: absolute;
   right: 0;
   background-color: #EBEBEB;
   height: 100%;
   padding: 0 10px;
+}
+#save{
+  background-color: #55ce30;
+  color: white;
+  border: none;
+  display: inline-block;
+  padding: 10px;
+  font-size: 20px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+#save:hover{
+  background-color: #6bdb46;
+}
+form #checkout{
+  background-color: #55ce30;
+  color: white;
+  width: 100%;
+  border: none;
+  padding: 20px 0;
+  font-size: 30px;
+  margin-top: 50px;
+  cursor: pointer;
+}
+form #checkout:hover{
+  background-color: #6bdb46;
 }
 .item img{
   height: 90px;
@@ -26,24 +52,24 @@
   background-color: #2D2D2D;
   display: inline-block;
 }
-.item form input, .item form button.delete-button, .item form .label{
+.item .item-inner-wrapper input, .item .item-inner-wrapper button.delete-button, .item .item-inner-wrapper .label{
   height: 90px;
   margin: 5px 0;
   font-size: 40px;
 }
 
-.item form input{
+.item .item-inner-wrapper input{
   width: 100px;
   text-align: center;
   height: 86px;
 }
-.item form button.delete-button{
+.item .item-inner-wrapper button.delete-button{
   width: 90px;
   color: white;
   background-color: #cd3c3c;
   border: none;
   margin-right: -5px;
 }
-.item form button.delete-button:hover, .item form button.delete-button:active{
+.item .item-inner-wrapper button.delete-button:hover, .item .item-inner-wrapper button.delete-button:active{
   background-color: #e04545;
 }

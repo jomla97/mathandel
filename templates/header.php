@@ -36,23 +36,31 @@
 				<div id="basket">
 					<?php
 						$pdo = pdo();
-						$username = $_SESSION['username'];
-						$statement = $pdo->prepare("SELECT SUM(price) FROM baskets INNER JOIN products ON baskets.item_id=products.id WHERE username LIKE '$username'");
 
-						if($statement->execute()){
-							$total = $statement->fetchAll();
+						if(isset($_SESSION['username'])){
+							$username = $_SESSION['username'];
 
-							if($total[0]['SUM(price)'] > 0){
-								echo 'Totalt: ' . $total[0]['SUM(price)'] . ' kr';
+							$statement = $pdo->prepare("SELECT SUM(price) FROM baskets INNER JOIN products ON baskets.item_id=products.id WHERE username LIKE '$username'");
+
+							if($statement->execute()){
+								$total = $statement->fetchAll();
+
+								if($total[0]['SUM(price)'] > 0){
+									echo 'Totalt: ' . $total[0]['SUM(price)'] . ' kr';
+								}
+								else{
+									echo 'Totalt: 0 kr';
+								}
 							}
 							else{
-								echo 'Totalt: 0 kr';
+								echo '<h1>Something must have gone wrong!</h1><br>';
+								print_r($statement->errorInfo());
 							}
 						}
 						else{
-							echo '<h1>Something must have gone wrong!</h1><br>';
-							print_r($statement->errorInfo());
+							echo 'Totalt: 0 kr';
 						}
+
 					?>
 					<img id="basket-icon" src="res/basket-icon.png">
 				</div>

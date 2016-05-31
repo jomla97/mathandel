@@ -1,5 +1,9 @@
 <?php
 
+  //Starta en session
+  session_start();
+  ob_start();
+
   require "includes/model.php";
   require "templates/header.php";
 
@@ -35,7 +39,7 @@
      	$login = login($_POST['username'], $_POST['password']);
 
         if($login == 1){
-
+          header("location:index.php");
         }
         else if($login == 2){
            $login_error = "Fel användarnamn eller lösenord. Försök igen.";
@@ -231,6 +235,17 @@
 
   else if($page == "basket" && logged_in()){
     require "templates/basket.php";
+    if(isset($_POST['checkout_check'])){
+      foreach($_POST as $item){
+        if(is_array($item)){
+          foreach($item as $item2){
+            $item = $item2;
+          }
+        }
+
+        //echo '<script>console.log(' . $item . ')</script>';
+      }
+    }
   }
 
   else if($page == 'about' || $page == 'contact' || $page == 'terms' || $page == 'help' || $page == 'delivery_times' || $page == 'delivery_method'){
